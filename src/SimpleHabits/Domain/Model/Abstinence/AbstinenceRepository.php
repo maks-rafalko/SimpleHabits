@@ -16,6 +16,7 @@ interface AbstinenceRepository
 
     /**
      * @param AbstinenceId $id
+     *
      * @return null|Abstinence
      */
     public function findById(AbstinenceId $id);

@@ -2,9 +2,7 @@
 
 namespace spec\SimpleHabits\Domain\Model\Abstinence;
 
-use SimpleHabits\Domain\Model\Abstinence\DayStreak;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 class DayStreakSpec extends ObjectBehavior
 {

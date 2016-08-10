@@ -1,5 +1,6 @@
 <?php
-declare(strict_types = 1);
+
+declare(strict_types=1);
 
 namespace SimpleHabits\Domain\Model\Abstinence;
 
@@ -41,8 +42,9 @@ class Abstinence
 
     /**
      * Abstinence constructor.
+     *
      * @param AbstinenceId $id
-     * @param string $name
+     * @param string       $name
      */
     public function __construct(AbstinenceId $id, string $name)
     {
@@ -78,7 +80,7 @@ class Abstinence
     }
 
     /**
-     * Mark this abstinence as deleted
+     * Mark this abstinence as deleted.
      */
     public function delete()
     {

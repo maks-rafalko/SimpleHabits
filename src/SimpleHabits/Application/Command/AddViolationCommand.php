@@ -1,5 +1,6 @@
 <?php
-declare(strict_types = 1);
+
+declare(strict_types=1);
 
 namespace SimpleHabits\Application\Command;
 
@@ -24,8 +25,9 @@ class AddViolationCommand
 
     /**
      * AddViolationCommand constructor.
-     * @param AbstinenceId $abstinenceId
-     * @param string|null $reason
+     *
+     * @param AbstinenceId            $abstinenceId
+     * @param string|null             $reason
      * @param \DateTimeInterface|null $violationDate
      */
     public function __construct(AbstinenceId $abstinenceId, string $reason = null, \DateTimeInterface $violationDate = null)

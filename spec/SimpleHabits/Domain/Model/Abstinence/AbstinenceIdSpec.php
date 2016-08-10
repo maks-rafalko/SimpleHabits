@@ -2,13 +2,12 @@
 
 namespace spec\SimpleHabits\Domain\Model\Abstinence;
 
-use SimpleHabits\Domain\Model\Abstinence\AbstinenceId;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
+use SimpleHabits\Domain\Model\Abstinence\AbstinenceId;
 
 class AbstinenceIdSpec extends ObjectBehavior
 {
-    function it_is_initializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType(AbstinenceId::class);
     }

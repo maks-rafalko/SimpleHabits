@@ -4,7 +4,6 @@ namespace spec\SimpleHabits\Domain\Model\Violation;
 
 use Assert\AssertionFailedException;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 use SimpleHabits\Domain\Model\Violation\ViolationId;
 
 class ViolationSpec extends ObjectBehavior
