@@ -1,3 +1,5 @@
+preset: symfony
+
 finder:
   exclude:
     - "bin"
