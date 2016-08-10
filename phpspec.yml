@@ -1,0 +1,6 @@
+suites:
+    simplehabits_suite:
+        namespace: SimpleHabits
+
+extensions:
+    Memio\SpecGen\MemioSpecGenExtension: ~

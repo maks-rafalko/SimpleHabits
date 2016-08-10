@@ -1,0 +1,87 @@
+<?php
+declare(strict_types = 1);
+
+namespace spec\SimpleHabits\Domain\Model\Abstinence;
+
+use PhpSpec\ObjectBehavior;
+use Prophecy\Argument;
+use Assert\AssertionFailedException;
+use SimpleHabits\Domain\Model\Abstinence\AbstinenceId;
+use SimpleHabits\Domain\Model\Abstinence\DayStreak;
+
+class AbstinenceSpec extends ObjectBehavior
+{
+    const NAME = 'Do not smoke';
+    const NEW_NAME = 'Do not lie';
+    
+    public function let()
+    {
+        $this->beConstructedWith(new AbstinenceId(), self::NAME);
+    }
+
+    public function it_should_have_an_id()
+    {
+        $this->getId()->shouldReturnAnInstanceOf(AbstinenceId::class);
+    }
+
+    public function it_has_a_name()
+    {
+        $this->getName()->shouldEqual(self::NAME);
+    }
+
+    public function it_should_change_name()
+    {
+        $this->getName()->shouldEqual(self::NAME);
+        $this->changeName(self::NEW_NAME);
+        $this->getName()->shouldEqual(self::NEW_NAME);
+    }
+
+    public function it_is_active_by_default()
+    {
+        $this->isActive()->shouldReturn(true);
+    }
+
+    public function it_can_be_deleted()
+    {
+        $this->delete();
+        $this->isActive()->shouldReturn(false);
+    }
+
+    public function it_throws_exception_when_name_is_empty()
+    {
+        $this->beConstructedWith(new AbstinenceId(), '');
+        $this->shouldThrow(AssertionFailedException::class)->duringInstantiation();
+    }
+
+    public function it_can_be_violated()
+    {
+        $this->isViolated()->shouldReturn(false);
+        $this->violate();
+        $this->isViolated()->shouldReturn(true);
+    }
+
+    public function it_can_be_violated_with_a_reason()
+    {
+        $this->violate('Reason');
+        $this->getViolations()[0]->getReason()->shouldReturn('Reason');
+    }
+
+    public function it_can_be_violated_with_a_reason_and_date()
+    {
+        $violationDate = new \DateTimeImmutable('2 days ago');
+
+        $this->violate('Reason', $violationDate);
+        $this->getViolations()[0]->getViolationDate()->shouldBeLike($violationDate);
+    }
+
+    public function it_should_calculate_day_streak_with_no_violations()
+    {
+        $this->calculateDayStreak()->shouldReturnAnInstanceOf(DayStreak::class);
+    }
+
+    public function it_should_calculate_day_streak_with_violations()
+    {
+        $this->violate();
+        $this->calculateDayStreak()->shouldReturnAnInstanceOf(DayStreak::class);
+    }
+}
