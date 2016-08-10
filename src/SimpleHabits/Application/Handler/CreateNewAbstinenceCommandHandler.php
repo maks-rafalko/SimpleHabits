@@ -16,6 +16,7 @@ class CreateNewAbstinenceCommandHandler
 
     /**
      * CreateNewAbstinenceCommandHandler constructor.
+     *
      * @param AbstinenceRepository $abstinenceRepository
      */
     public function __construct(AbstinenceRepository $abstinenceRepository)
@@ -29,9 +30,9 @@ class CreateNewAbstinenceCommandHandler
     public function handle(CreateNewAbstinenceCommand $createNewAbstinenceCommand)
     {
         $name = $createNewAbstinenceCommand->getName();
-        
+
         $abstinence = new Abstinence(new AbstinenceId(), $name);
-        
+
         $this->abstinenceRepository->add($abstinence);
     }
 }

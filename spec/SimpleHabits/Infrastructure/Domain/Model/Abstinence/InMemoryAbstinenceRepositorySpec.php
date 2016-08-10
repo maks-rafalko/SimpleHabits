@@ -2,11 +2,10 @@
 
 namespace spec\SimpleHabits\Infrastructure\Domain\Model\Abstinence;
 
+use PhpSpec\ObjectBehavior;
 use SimpleHabits\Domain\Model\Abstinence\Abstinence;
 use SimpleHabits\Domain\Model\Abstinence\AbstinenceId;
 use SimpleHabits\Infrastructure\Domain\Model\Abstinence\InMemoryAbstinenceRepository;
-use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 class InMemoryAbstinenceRepositorySpec extends ObjectBehavior
 {

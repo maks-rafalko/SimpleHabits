@@ -14,7 +14,7 @@ class InMemoryAbstinenceRepository implements AbstinenceRepository
     private $abstinences = [];
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function add(Abstinence $abstinence)
     {
@@ -22,7 +22,7 @@ class InMemoryAbstinenceRepository implements AbstinenceRepository
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function remove(Abstinence $abstinence)
     {
@@ -30,7 +30,7 @@ class InMemoryAbstinenceRepository implements AbstinenceRepository
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function findById(AbstinenceId $id)
     {

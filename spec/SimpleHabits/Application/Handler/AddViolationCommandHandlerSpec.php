@@ -2,13 +2,13 @@
 
 namespace spec\SimpleHabits\Application\Handler;
 
-use SimpleHabits\Application\Command\AddViolationCommand;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use SimpleHabits\Application\Command\AddViolationCommand;
 use SimpleHabits\Domain\Model\Abstinence\Abstinence;
-use SimpleHabits\Domain\Model\Abstinence\Exception\AbstinenceDoesNotExistException;
 use SimpleHabits\Domain\Model\Abstinence\AbstinenceId;
 use SimpleHabits\Domain\Model\Abstinence\AbstinenceRepository;
+use SimpleHabits\Domain\Model\Abstinence\Exception\AbstinenceDoesNotExistException;
 
 class AddViolationCommandHandlerSpec extends ObjectBehavior
 {

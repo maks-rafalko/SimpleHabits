@@ -1,11 +1,11 @@
 <?php
-declare(strict_types = 1);
+
+declare(strict_types=1);
 
 namespace spec\SimpleHabits\Domain\Model\Abstinence;
 
-use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 use Assert\AssertionFailedException;
+use PhpSpec\ObjectBehavior;
 use SimpleHabits\Domain\Model\Abstinence\AbstinenceId;
 use SimpleHabits\Domain\Model\Abstinence\DayStreak;
 
@@ -13,7 +13,7 @@ class AbstinenceSpec extends ObjectBehavior
 {
     const NAME = 'Do not smoke';
     const NEW_NAME = 'Do not lie';
-    
+
     public function let()
     {
         $this->beConstructedWith(new AbstinenceId(), self::NAME);

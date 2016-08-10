@@ -1,5 +1,6 @@
 <?php
-declare(strict_types = 1);
+
+declare(strict_types=1);
 
 namespace SimpleHabits\Domain\Model\Abstinence;
 
@@ -27,7 +28,7 @@ class AbstinenceId
     {
         return $this->id;
     }
-    
+
     /**
      * @param AbstinenceId $abstinenceId
      *

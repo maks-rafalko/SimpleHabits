@@ -8,6 +8,7 @@ class AbstinenceDoesNotExistException extends \Exception
 {
     /**
      * @param AbstinenceId $id
+     *
      * @return AbstinenceDoesNotExistException
      */
     public static function withId(AbstinenceId $id)
