@@ -3,6 +3,8 @@
 /phpunit.xml
 /var/*
 /bin/*
+!/bin/console
+!/bin/symfony_requirements
 !/var/cache
 /var/cache/*
 !var/cache/.gitkeep
