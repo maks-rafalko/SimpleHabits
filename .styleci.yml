@@ -1,0 +1,7 @@
+finder:
+  exclude:
+    - "bin"
+    - "app"
+    - "web"
+    - "var"
+    - "vendor"
