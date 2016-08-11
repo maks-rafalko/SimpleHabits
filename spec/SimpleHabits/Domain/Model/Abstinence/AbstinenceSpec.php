@@ -29,11 +29,29 @@ class AbstinenceSpec extends ObjectBehavior
         $this->getName()->shouldEqual(self::NAME);
     }
 
+    public function it_has_a_start_date()
+    {
+        $this->getStartedAt()->shouldReturnAnInstanceOf(\DateTimeInterface::class);
+    }
+
     public function it_should_change_name()
     {
         $this->getName()->shouldEqual(self::NAME);
         $this->changeName(self::NEW_NAME);
         $this->getName()->shouldEqual(self::NEW_NAME);
+    }
+
+    public function it_should_change_start_date()
+    {
+        $newStartDate = new \DateTimeImmutable('-3 days');
+        $this->changeStartDate($newStartDate);
+        $this->getStartedAt()->shouldBeLike($newStartDate);
+    }
+
+    public function it_throws_an_exception_when_start_date_changed_to_the_future()
+    {
+        $newStartDate = new \DateTimeImmutable('+3 days');
+        $this->shouldThrow(AssertionFailedException::class)->during('changeStartDate', [$newStartDate]);
     }
 
     public function it_is_active_by_default()
@@ -47,7 +65,7 @@ class AbstinenceSpec extends ObjectBehavior
         $this->isActive()->shouldReturn(false);
     }
 
-    public function it_throws_exception_when_name_is_empty()
+    public function it_throws_an_exception_when_name_is_empty()
     {
         $this->beConstructedWith(new AbstinenceId(), '');
         $this->shouldThrow(AssertionFailedException::class)->duringInstantiation();

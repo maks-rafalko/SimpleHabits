@@ -140,4 +140,22 @@ class Abstinence
 
         $this->name = $name;
     }
+
+    /**
+     * @param \DateTimeInterface $newStartDate
+     */
+    public function changeStartDate(\DateTimeInterface $newStartDate)
+    {
+        \Assert\that($newStartDate)->lessOrEqualThan(new \DateTimeImmutable());
+        
+        $this->startedAt = $newStartDate;
+    }
+
+    /**
+     * @return \DateTimeInterface
+     */
+    public function getStartedAt() : \DateTimeInterface
+    {
+        return $this->startedAt;
+    }
 }

@@ -24,8 +24,8 @@ class DayStreak
      */
     public function __construct(\DateTimeInterface $startDate, \DateTimeInterface $finishDate)
     {
-        \Assert\that($startDate)->lessOrEqualThan($startDate, new \DateTimeImmutable());
-        \Assert\that($startDate)->lessOrEqualThan($finishDate, new \DateTimeImmutable());
+        \Assert\that($startDate)->lessOrEqualThan(new \DateTimeImmutable());
+        \Assert\that($startDate)->lessOrEqualThan($finishDate);
 
         $this->startDate = $startDate;
         $this->finishDate = $finishDate;
