@@ -27,7 +27,7 @@ class UpdateAbstinenceHandler
 
     /**
      * @param UpdateAbstinenceCommand $command
-     * 
+     *
      * @throws AbstinenceDoesNotExistException
      */
     public function handle(UpdateAbstinenceCommand $command)
@@ -41,9 +41,9 @@ class UpdateAbstinenceHandler
         }
 
         if ($command->getName() !== null) {
-            $abstinence->changeName($command->getName());    
+            $abstinence->changeName($command->getName());
         }
-        
+
         if ($command->getStartedAt() !== null) {
             $abstinence->changeStartDate($command->getStartedAt());
         }
