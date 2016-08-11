@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SimpleHabits\Application\Command;
 
-
 use SimpleHabits\Domain\Model\Abstinence\AbstinenceId;
 
 class UpdateAbstinenceCommand
@@ -13,7 +12,7 @@ class UpdateAbstinenceCommand
      * @var AbstinenceId
      */
     private $abstinenceId;
-    
+
     /**
      * @var null|string
      */
@@ -26,9 +25,9 @@ class UpdateAbstinenceCommand
 
     /**
      * UpdateAbstinenceCommand constructor.
-     * 
-     * @param AbstinenceId $abstinenceId
-     * @param string|null $name
+     *
+     * @param AbstinenceId            $abstinenceId
+     * @param string|null             $name
      * @param \DateTimeInterface|null $startedAt
      */
     public function __construct(AbstinenceId $abstinenceId, string $name = null, \DateTimeInterface $startedAt = null)
@@ -45,7 +44,7 @@ class UpdateAbstinenceCommand
     {
         return $this->abstinenceId;
     }
-    
+
     /**
      * @return null|string
      */

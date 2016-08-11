@@ -147,7 +147,7 @@ class Abstinence
     public function changeStartDate(\DateTimeInterface $newStartDate)
     {
         \Assert\that($newStartDate)->lessOrEqualThan(new \DateTimeImmutable());
-        
+
         $this->startedAt = $newStartDate;
     }
 
