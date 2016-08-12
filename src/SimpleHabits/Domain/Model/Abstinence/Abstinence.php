@@ -80,6 +80,14 @@ class Abstinence
     }
 
     /**
+     * @return bool
+     */
+    public function isDeleted() : bool
+    {
+        return $this->status === self::STATUS_DELETED;
+    }
+
+    /**
      * Mark this abstinence as deleted.
      */
     public function delete()
