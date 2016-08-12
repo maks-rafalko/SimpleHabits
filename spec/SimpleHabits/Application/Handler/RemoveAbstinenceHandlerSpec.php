@@ -42,7 +42,6 @@ class RemoveAbstinenceHandlerSpec extends ObjectBehavior
     public function it_should_throw_an_exception_when_abstinence_is_not_found(AbstinenceRepository $abstinenceRepository)
     {
         $abstinenceId = new AbstinenceId();
-
         $command = new RemoveAbstinenceCommand($abstinenceId, 'Bad mood');
 
         $abstinenceRepository->findById(Argument::exact($abstinenceId))
