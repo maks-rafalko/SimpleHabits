@@ -37,14 +37,14 @@ class InMemoryAbstinenceRepository implements AbstinenceRepository
         if (!array_key_exists((string) $id, $this->abstinences)) {
             return null;
         }
-        
+
         /** @var Abstinence $abstinence */
         $abstinence = $this->abstinences[(string) $id];
-        
+
         if ($abstinence->isDeleted()) {
             return null;
         }
-        
+
         return $abstinence;
     }
 }
