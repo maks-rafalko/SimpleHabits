@@ -35,16 +35,16 @@ class InMemoryAbstinenceRepository implements AbstinenceRepository
     public function findById(AbstinenceId $id)
     {
         if (!array_key_exists((string) $id, $this->abstinences)) {
-            return null;
+            return;
         }
-        
+
         /** @var Abstinence $abstinence */
         $abstinence = $this->abstinences[(string) $id];
-        
+
         if ($abstinence->isDeleted()) {
-            return null;
+            return;
         }
-        
+
         return $abstinence;
     }
 }
