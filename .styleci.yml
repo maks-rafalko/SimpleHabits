@@ -1,5 +1,7 @@
 preset: symfony
 
+disabled: empty_return
+
 finder:
   exclude:
     - "bin"

@@ -26,7 +26,7 @@ class InMemoryAbstinenceRepository implements AbstinenceRepository
      */
     public function remove(Abstinence $abstinence)
     {
-        unset($this->abstinences[(string) $abstinence->getId()]);
+        $abstinence->delete();
     }
 
     /**
@@ -34,6 +34,17 @@ class InMemoryAbstinenceRepository implements AbstinenceRepository
      */
     public function findById(AbstinenceId $id)
     {
-        return $this->abstinences[(string) $id] ?? null;
+        if (!array_key_exists((string) $id, $this->abstinences)) {
+            return null;
+        }
+        
+        /** @var Abstinence $abstinence */
+        $abstinence = $this->abstinences[(string) $id];
+        
+        if ($abstinence->isDeleted()) {
+            return null;
+        }
+        
+        return $abstinence;
     }
 }
