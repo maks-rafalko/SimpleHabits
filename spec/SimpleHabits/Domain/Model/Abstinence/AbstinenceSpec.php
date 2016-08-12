@@ -62,7 +62,7 @@ class AbstinenceSpec extends ObjectBehavior
     public function it_can_be_deleted()
     {
         $this->delete();
-        $this->isActive()->shouldReturn(false);
+        $this->isDeleted()->shouldReturn(true);
     }
 
     public function it_throws_an_exception_when_name_is_empty()
