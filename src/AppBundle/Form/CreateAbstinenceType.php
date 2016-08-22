@@ -17,7 +17,7 @@ class CreateAbstinenceType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -32,9 +32,9 @@ class CreateAbstinenceType extends AbstractType
                         new NotBlank(),
                         new Length([
                             'min' => Abstinence::NAME_MIN_LENGTH,
-                            'max' =>Abstinence::NAME_MAX_LENGTH,
-                        ])
-                    ]
+                            'max' => Abstinence::NAME_MAX_LENGTH,
+                        ]),
+                    ],
                 ]
             )
             ->add('save', SubmitType::class);
