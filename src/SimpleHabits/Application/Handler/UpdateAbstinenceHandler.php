@@ -16,7 +16,7 @@ class UpdateAbstinenceHandler
     private $abstinenceRepository;
 
     /**
-     * CreateNewAbstinenceCommandHandler constructor.
+     * UpdateAbstinenceHandler constructor.
      *
      * @param AbstinenceRepository $abstinenceRepository
      */

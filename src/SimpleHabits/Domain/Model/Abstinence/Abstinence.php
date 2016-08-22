@@ -12,7 +12,7 @@ class Abstinence
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 1;
 
-    const NAME_MIN_LENGTH = 0;
+    const NAME_MIN_LENGTH = 1;
     const NAME_MAX_LENGTH = 255;
 
     /**

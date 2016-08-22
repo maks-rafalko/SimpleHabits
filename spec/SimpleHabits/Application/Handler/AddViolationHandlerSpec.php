@@ -10,7 +10,7 @@ use SimpleHabits\Domain\Model\Abstinence\AbstinenceId;
 use SimpleHabits\Domain\Model\Abstinence\AbstinenceRepository;
 use SimpleHabits\Domain\Model\Abstinence\Exception\AbstinenceDoesNotExistException;
 
-class AddViolationCommandHandlerSpec extends ObjectBehavior
+class AddViolationHandlerSpec extends ObjectBehavior
 {
     public function let(AbstinenceRepository $abstinenceRepository)
     {
