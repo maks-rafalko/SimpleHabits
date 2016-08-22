@@ -16,16 +16,16 @@ class AbstinencesController extends Controller
     {
         $form = $this->createForm(CreateAbstinenceType::class);
         $form->handleRequest($request);
-        
+
         if ($form->isValid()) {
             $commandBus = $this->get('tactician.commandbus');
 
             $command = $form->getData();
-            $commandBus->handle($command);    
+            $commandBus->handle($command);
         }
-        
+
         return $this->render('default/index.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
 }
