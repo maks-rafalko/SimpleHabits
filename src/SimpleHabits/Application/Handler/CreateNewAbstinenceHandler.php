@@ -7,7 +7,7 @@ use SimpleHabits\Domain\Model\Abstinence\Abstinence;
 use SimpleHabits\Domain\Model\Abstinence\AbstinenceId;
 use SimpleHabits\Domain\Model\Abstinence\AbstinenceRepository;
 
-class CreateNewAbstinenceCommandHandler
+class CreateNewAbstinenceHandler
 {
     /**
      * @var AbstinenceRepository
@@ -15,7 +15,7 @@ class CreateNewAbstinenceCommandHandler
     private $abstinenceRepository;
 
     /**
-     * CreateNewAbstinenceCommandHandler constructor.
+     * CreateNewAbstinenceHandler constructor.
      *
      * @param AbstinenceRepository $abstinenceRepository
      */

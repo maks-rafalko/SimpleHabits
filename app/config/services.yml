@@ -4,6 +4,12 @@ parameters:
 #    parameter_name: value
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    app.repository.abstinence:
+        class: SimpleHabits\Infrastructure\Domain\Model\Abstinence\InMemoryAbstinenceRepository
+
+    app.create_new_abstinence_handler:
+        class: SimpleHabits\Application\Handler\CreateNewAbstinenceHandler
+        arguments:
+            - '@app.repository.abstinence'
+        tags:
+            - { name: tactician.handler, command: SimpleHabits\Application\Command\CreateNewAbstinenceCommand }
