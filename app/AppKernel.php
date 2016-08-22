@@ -16,6 +16,8 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
+
+            new League\Tactician\Bundle\TacticianBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
@@ -33,15 +35,28 @@ class AppKernel extends Kernel
         return __DIR__;
     }
 
-    public function getCacheDir()
-    {
-        return dirname(__DIR__).'/var/cache/'.$this->getEnvironment();
-    }
+//    /**
+//     * {@inheritDoc}
+//     */
+//    public function getCacheDir()
+//    {
+//        if (in_array($this->environment, array('dev', 'test'))) {
+//            return '/dev/shm/appname/cache/' .  $this->environment;
+//        }
+//        return $this->rootDir . '/cache/' . $this->environment;
+//    }
+//
+//    /**
+//     * {@inheritDoc}
+//     */
+//    public function getLogDir()
+//    {
+//        if (in_array($this->environment, array('dev', 'test'))) {
+//            return '/dev/shm/appname/logs/' . $this->environment;
+//        }
+//        return $this->rootDir . '/logs/' . $this->environment;
+//    }
 
-    public function getLogDir()
-    {
-        return dirname(__DIR__).'/var/logs';
-    }
 
     public function registerContainerConfiguration(LoaderInterface $loader)
     {

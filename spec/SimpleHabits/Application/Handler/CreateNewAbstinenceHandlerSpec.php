@@ -8,7 +8,7 @@ use SimpleHabits\Application\Command\CreateNewAbstinenceCommand;
 use SimpleHabits\Domain\Model\Abstinence\Abstinence;
 use SimpleHabits\Domain\Model\Abstinence\AbstinenceRepository;
 
-class CreateNewAbstinenceCommandHandlerSpec extends ObjectBehavior
+class CreateNewAbstinenceHandlerSpec extends ObjectBehavior
 {
     const NAME = 'Do not smoke';
 

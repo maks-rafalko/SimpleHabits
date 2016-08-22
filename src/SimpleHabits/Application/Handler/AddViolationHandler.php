@@ -6,7 +6,7 @@ use SimpleHabits\Application\Command\AddViolationCommand;
 use SimpleHabits\Domain\Model\Abstinence\AbstinenceRepository;
 use SimpleHabits\Domain\Model\Abstinence\Exception\AbstinenceDoesNotExistException;
 
-class AddViolationCommandHandler
+class AddViolationHandler
 {
     /**
      * @var AbstinenceRepository
@@ -14,7 +14,7 @@ class AddViolationCommandHandler
     private $abstinenceRepository;
 
     /**
-     * CreateNewAbstinenceCommandHandler constructor.
+     * CreateNewAbstinenceHandler constructor.
      *
      * @param AbstinenceRepository $abstinenceRepository
      */
