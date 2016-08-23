@@ -16,6 +16,7 @@ class DoctrineAbstinenceRepository implements AbstinenceRepository
 
     /**
      * DoctrineAbstinenceRepository constructor.
+     *
      * @param EntityManagerInterface $em
      */
     public function __construct(EntityManagerInterface $em)
