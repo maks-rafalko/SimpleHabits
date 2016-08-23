@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "23c48d1966182f3f8d90c6e0adb87904",
-    "content-hash": "ee1f4871bb7df477802ab79f414407be",
+    "hash": "b887d0adf069aad898cb91e2e2df2356",
+    "content-hash": "6534b4db257c81170e411fee1c385cc4",
     "packages": [
         {
             "name": "beberlei/assert",
@@ -1059,6 +1059,55 @@
                 "tactician"
             ],
             "time": "2016-04-21 08:00:01"
+        },
+        {
+            "name": "league/tactician-doctrine",
+            "version": "v1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/tactician-doctrine.git",
+                "reference": "cb2a7b9dfeb9851386a9287421e7b07499ade132"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/tactician-doctrine/zipball/cb2a7b9dfeb9851386a9287421e7b07499ade132",
+                "reference": "cb2a7b9dfeb9851386a9287421e7b07499ade132",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/orm": "~2.4",
+                "league/tactician": "^1.0",
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9",
+                "phpunit/phpunit": "~4.3",
+                "squizlabs/php_codesniffer": "~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "League\\Tactician\\Doctrine\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ross Tuck"
+                }
+            ],
+            "description": "Plugins for Tactician commands using Doctrine, like wrapping every command in a transaction",
+            "homepage": "https://github.com/thephpleague/tactician-doctrine",
+            "keywords": [
+                "command bus",
+                "doctrine",
+                "tactician",
+                "transactions"
+            ],
+            "time": "2016-02-28 15:33:05"
         },
         {
             "name": "monolog/monolog",
