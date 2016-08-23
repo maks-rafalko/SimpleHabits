@@ -5,7 +5,9 @@ parameters:
 
 services:
     app.repository.abstinence:
-        class: SimpleHabits\Infrastructure\Domain\Model\Abstinence\InMemoryAbstinenceRepository
+        class: SimpleHabits\Infrastructure\Domain\Model\Abstinence\DoctrineAbstinenceRepository
+        arguments:
+            - '@doctrine.orm.entity_manager'
 
     app.create_new_abstinence_handler:
         class: SimpleHabits\Application\Handler\CreateNewAbstinenceHandler

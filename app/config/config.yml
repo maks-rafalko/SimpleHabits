@@ -47,11 +47,20 @@ doctrine:
         user:     "%database_user%"
         password: "%database_password%"
         charset:  UTF8
+        types:
+            abstinenceId: SimpleHabits\Infrastructure\Domain\Model\Abstinence\DoctrineAbstinenceId
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
+        mappings:
+            SimpleHabits:
+                type: xml
+                dir: '%kernel.root_dir%/../src/SimpleHabits/Infrastructure/Persistence/Doctrine/Mapping'
+                is_bundle: false
+                prefix: SimpleHabits\Domain\Model
+                alias: SimpleHabits
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -66,4 +75,5 @@ tactician:
         default:
             middleware:
                 - tactician.middleware.locking
+                - tactician.middleware.doctrine
                 - tactician.middleware.command_handler
