@@ -47,4 +47,13 @@ class InMemoryAbstinenceRepository implements AbstinenceRepository
 
         return $abstinence;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findByUserId($userId)
+    {
+        // TODO rewrite it after User->Abstinence relation is created
+        return $this->abstinences;
+    }
 }

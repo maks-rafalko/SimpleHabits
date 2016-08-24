@@ -20,4 +20,9 @@ interface AbstinenceRepository
      * @return null|Abstinence
      */
     public function findById(AbstinenceId $id);
+
+    /**
+     * @param $userId
+     */
+    public function findByUserId($userId);
 }

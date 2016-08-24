@@ -10,9 +10,9 @@ use AppBundle\Form\CreateAbstinenceType;
 class AbstinencesController extends Controller
 {
     /**
-     * @Route("/abstinences", name="abstinences")
+     * @Route("/abstinences/create", name="abstinences_create")
      */
-    public function indexAction(Request $request)
+    public function createAction(Request $request)
     {
         $form = $this->createForm(CreateAbstinenceType::class);
         $form->handleRequest($request);
@@ -24,8 +24,20 @@ class AbstinencesController extends Controller
             $commandBus->handle($command);
         }
 
-        return $this->render('default/index.html.twig', [
+        return $this->render('abstinence/create.html.twig', [
             'form' => $form->createView(),
         ]);
     }
+    /**
+     * @Route("/abstinences", name="abstinences")
+     */
+    public function listAction()
+    {
+        $abstinences = $this->get('app.repository.abstinence')->findByUserId(1);
+
+        return $this->render('abstinence/list.html.twig', [
+            'abstinences' => $abstinences,
+        ]);
+    }
+
 }

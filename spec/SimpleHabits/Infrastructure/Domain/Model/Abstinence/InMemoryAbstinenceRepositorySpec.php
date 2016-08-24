@@ -34,4 +34,15 @@ class InMemoryAbstinenceRepositorySpec extends ObjectBehavior
         $this->remove($abstinence);
         $this->findById($id)->shouldReturn(null);
     }
+
+    public function it_should_find_by_user_iid()
+    {
+        // TODO implement UserId relation
+        $userId = 1;
+        
+        $id = new AbstinenceId();
+        $this->add(new Abstinence($id, self::NAME));
+
+        $this->findByUserId($userId)->shouldHaveCount(1);
+    }
 }
