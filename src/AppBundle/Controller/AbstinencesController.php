@@ -28,6 +28,7 @@ class AbstinencesController extends Controller
             'form' => $form->createView(),
         ]);
     }
+
     /**
      * @Route("/abstinences", name="abstinences")
      */
@@ -39,5 +40,4 @@ class AbstinencesController extends Controller
             'abstinences' => $abstinences,
         ]);
     }
-
 }

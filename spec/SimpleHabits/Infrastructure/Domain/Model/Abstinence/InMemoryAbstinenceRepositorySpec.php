@@ -39,7 +39,7 @@ class InMemoryAbstinenceRepositorySpec extends ObjectBehavior
     {
         // TODO implement UserId relation
         $userId = 1;
-        
+
         $id = new AbstinenceId();
         $this->add(new Abstinence($id, self::NAME));
 
