@@ -9,8 +9,10 @@
         <id name="id" column="id" type="abstinenceId"/>
 
         <field name="name" type="string" length="255" />
-        <field name="startedAt" type="datetime" column="startedAt" />
+        <field name="startedAt" type="datetime" column="started_at" />
         <field name="status" type="smallint" />
+
+        <one-to-many field="violations" target-entity="SimpleHabits\Domain\Model\Violation\Violation" mapped-by="abstinence" />
 
     </entity>
 </doctrine-mapping>
