@@ -12,7 +12,7 @@
         <field name="startedAt" type="datetime" column="started_at" />
         <field name="status" type="smallint" />
 
-        <many-to-many field="violations" target-entity="SimpleHabits\Domain\Model\Violation\Violation">
+        <many-to-many field="violations" target-entity="SimpleHabits\Domain\Model\Violation\Violation" fetch="EAGER">
             <cascade>
                 <cascade-persist/>
             </cascade>

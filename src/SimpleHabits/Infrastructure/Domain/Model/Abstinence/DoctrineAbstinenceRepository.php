@@ -65,6 +65,12 @@ class DoctrineAbstinenceRepository implements AbstinenceRepository
     public function findByUserId($userId)
     {
         // TODO rewrite it when user-abstinence realtion is created
-        return $this->repository->findBy([], ['startedAt' => 'ASC']);
+        $qb = $this->repository->createQueryBuilder('a');
+
+        return $qb->select('a, v')
+            ->leftJoin('a.violations', 'v')
+            ->orderBy('a.startedAt', 'ASC')
+            ->getQuery()
+            ->getResult();
     }
 }
