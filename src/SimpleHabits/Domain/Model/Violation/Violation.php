@@ -2,8 +2,6 @@
 
 namespace SimpleHabits\Domain\Model\Violation;
 
-use SimpleHabits\Domain\Model\Abstinence\AbstinenceId;
-
 class Violation
 {
     const MAX_REASON_LENGTH = 255;
