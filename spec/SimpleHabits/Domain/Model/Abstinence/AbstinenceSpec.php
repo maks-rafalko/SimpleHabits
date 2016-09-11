@@ -8,6 +8,7 @@ use Assert\AssertionFailedException;
 use PhpSpec\ObjectBehavior;
 use SimpleHabits\Domain\Model\Abstinence\AbstinenceId;
 use SimpleHabits\Domain\Model\Abstinence\DayStreak;
+use SimpleHabits\Domain\Model\Violation\Violation;
 
 class AbstinenceSpec extends ObjectBehavior
 {
@@ -90,6 +91,12 @@ class AbstinenceSpec extends ObjectBehavior
 
         $this->violate('Reason', $violationDate);
         $this->getViolations()[0]->getViolationDate()->shouldBeLike($violationDate);
+    }
+
+    public function it_can_return_last_violation()
+    {
+        $this->violate('Reason', new \DateTimeImmutable('2 days ago'));
+        $this->getLastViolation()->shouldReturnAnInstanceOf(Violation::class);
     }
 
     public function it_should_calculate_day_streak_with_no_violations()

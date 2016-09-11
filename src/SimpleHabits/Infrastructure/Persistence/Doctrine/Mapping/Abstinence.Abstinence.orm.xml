@@ -9,8 +9,21 @@
         <id name="id" column="id" type="abstinenceId"/>
 
         <field name="name" type="string" length="255" />
-        <field name="startedAt" type="datetime" column="startedAt" />
+        <field name="startedAt" type="datetime" column="started_at" />
         <field name="status" type="smallint" />
 
+        <many-to-many field="violations" target-entity="SimpleHabits\Domain\Model\Violation\Violation">
+            <cascade>
+                <cascade-persist/>
+            </cascade>
+            <join-table name="abstinence_violations">
+                <join-columns>
+                    <join-column name="abstinence_id" referenced-column-name="id" />
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="violation_id" referenced-column-name="id" unique="true" />
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
     </entity>
 </doctrine-mapping>

@@ -49,6 +49,7 @@ doctrine:
         charset:  UTF8
         types:
             abstinenceId: SimpleHabits\Infrastructure\Domain\Model\Abstinence\DoctrineAbstinenceId
+            violationId: SimpleHabits\Infrastructure\Domain\Model\Violation\DoctrineViolationId
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"

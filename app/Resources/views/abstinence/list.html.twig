@@ -6,7 +6,10 @@
             <a href="{{ url('abstinences_create') }}">Create Abstinence</a>
             <ul>
                 {% for abstinence in abstinences %}
-                    <li>{{ abstinence.name }}</li>
+                    <li>
+                        {{ abstinence.name }} ({{ abstinence.calculateDayStreak.getDayStreakCount() }} days streak)
+                        <a href="{{ url('abstinences_violate', {id: abstinence.id}) }}">Violate</a>
+                    </li>
                 {% endfor %}
             </ul>
         </div>
