@@ -48,7 +48,7 @@ class AddViolationCommand
     /**
      * @return string
      */
-    public function getReason() : string
+    public function getReason()
     {
         return $this->reason;
     }
@@ -56,7 +56,7 @@ class AddViolationCommand
     /**
      * @return \DateTimeInterface
      */
-    public function getViolationDate() : \DateTimeInterface
+    public function getViolationDate()
     {
         return $this->violationDate;
     }

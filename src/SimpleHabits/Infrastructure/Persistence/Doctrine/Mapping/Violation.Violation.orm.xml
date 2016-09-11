@@ -8,12 +8,8 @@
 
         <id name="id" column="id" type="violationId"/>
 
-        <field name="reason" type="string" length="255" />
+        <field name="reason" type="string" length="255" nullable="true" />
         <field name="violatedAt" type="datetime" column="violated_at" />
-
-        <many-to-one field="abstinence" target-entity="SimpleHabits\Domain\Model\Abstinence\Abstinence" inversed-by="violations">
-            <join-column name="violation_id" referenced-column-name="id" />
-        </many-to-one>
 
     </entity>
 </doctrine-mapping>

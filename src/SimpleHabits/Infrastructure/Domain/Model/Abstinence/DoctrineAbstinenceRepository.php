@@ -56,7 +56,7 @@ class DoctrineAbstinenceRepository implements AbstinenceRepository
      */
     public function findById(AbstinenceId $id) : Abstinence
     {
-        // TODO complete
+        return $this->repository->find($id);
     }
 
     /**

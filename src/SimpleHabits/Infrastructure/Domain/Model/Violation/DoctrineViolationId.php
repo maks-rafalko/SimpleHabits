@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleHabits\Infrastructure\Domain\Model\Abstinence;
+namespace SimpleHabits\Infrastructure\Domain\Model\Violation;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\GuidType;

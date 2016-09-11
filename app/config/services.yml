@@ -15,3 +15,10 @@ services:
             - '@app.repository.abstinence'
         tags:
             - { name: tactician.handler, command: SimpleHabits\Application\Command\CreateNewAbstinenceCommand }
+
+    app.add_violation_handler:
+        class: SimpleHabits\Application\Handler\AddViolationHandler
+        arguments:
+            - '@app.repository.abstinence'
+        tags:
+            - { name: tactician.handler, command: SimpleHabits\Application\Command\AddViolationCommand }

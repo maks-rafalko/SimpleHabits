@@ -1,14 +1,31 @@
 <?php
 
+declare(strict_types=1);
+
 namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use SimpleHabits\Application\Command\AddViolationCommand;
+use SimpleHabits\Domain\Model\Abstinence\AbstinenceId;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Form\CreateAbstinenceType;
 
 class AbstinencesController extends Controller
 {
+    /**
+     * @Route("/abstinences", name="abstinences")
+     */
+    public function listAction()
+    {
+        // TODO return DTO but not entities (readService? investigate it) ->toArray?
+        $abstinences = $this->get('app.repository.abstinence')->findByUserId(1);
+
+        return $this->render('abstinence/list.html.twig', [
+            'abstinences' => $abstinences,
+        ]);
+    }
+
     /**
      * @Route("/abstinences/create", name="abstinences_create")
      */
@@ -18,10 +35,8 @@ class AbstinencesController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $commandBus = $this->get('tactician.commandbus');
-
             $command = $form->getData();
-            $commandBus->handle($command);
+            $this->get('tactician.commandbus')->handle($command);
         }
 
         return $this->render('abstinence/create.html.twig', [
@@ -30,14 +45,15 @@ class AbstinencesController extends Controller
     }
 
     /**
-     * @Route("/abstinences", name="abstinences")
+     * @Route("/abstinences/{id}/violate", name="abstinences_violate")
      */
-    public function listAction()
+    public function violateAction($id)
     {
-        $abstinences = $this->get('app.repository.abstinence')->findByUserId(1);
+        // TODO check that this abstinence is owned by current user
 
-        return $this->render('abstinence/list.html.twig', [
-            'abstinences' => $abstinences,
-        ]);
+        $command = new AddViolationCommand(new AbstinenceId($id));
+        $this->get('tactician.commandbus')->handle($command);
+
+        return $this->redirectToRoute('abstinences');
     }
 }

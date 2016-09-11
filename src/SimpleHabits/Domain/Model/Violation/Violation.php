@@ -24,24 +24,17 @@ class Violation
     private $violatedAt;
 
     /**
-     * @var AbstinenceId
-     */
-    private $abstinenceId;
-
-    /**
      * Violation constructor.
      *
      * @param ViolationId             $id
-     * @param AbstinenceId            $abstinenceId
      * @param null|string             $reason
      * @param null|\DateTimeInterface $violatedAt
      */
-    public function __construct(ViolationId $id, AbstinenceId $abstinenceId, $reason = null, $violatedAt = null)
+    public function __construct(ViolationId $id, $reason = null, $violatedAt = null)
     {
         \Assert\that($reason)->nullOr()->string()->maxLength(self::MAX_REASON_LENGTH);
 
         $this->id = $id;
-        $this->abstinenceId = $abstinenceId;
         $this->reason = $reason;
         $this->violatedAt = $violatedAt ?: new \DateTimeImmutable();
     }

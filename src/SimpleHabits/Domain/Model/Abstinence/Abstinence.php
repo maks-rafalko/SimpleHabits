@@ -130,7 +130,7 @@ class Abstinence
         }
 
         /** @var Violation $lastViolation */
-        $lastViolation = end($this->violations);
+        $lastViolation = $this->getLastViolation();
 
         return new DayStreak($lastViolation->getViolationDate(), new \DateTimeImmutable());
     }
@@ -165,5 +165,13 @@ class Abstinence
     public function getStartedAt() : \DateTimeInterface
     {
         return $this->startedAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLastViolation() : Violation
+    {
+        return $this->violations[count($this->violations) - 1];
     }
 }
