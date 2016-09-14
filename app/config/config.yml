@@ -50,6 +50,7 @@ doctrine:
         types:
             abstinenceId: SimpleHabits\Infrastructure\Domain\Model\Abstinence\DoctrineAbstinenceId
             violationId: SimpleHabits\Infrastructure\Domain\Model\Violation\DoctrineViolationId
+            userId: SimpleHabits\Infrastructure\Domain\Model\User\DoctrineUSerId
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleHabits\Domain\Model\Abstinence;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use SimpleHabits\Domain\Model\Violation\Violation;
 use SimpleHabits\Domain\Model\Violation\ViolationId;
 
@@ -38,7 +39,7 @@ class Abstinence
     /**
      * @var array
      */
-    private $violations = [];
+    private $violations;
 
     /**
      * Abstinence constructor.
@@ -53,6 +54,7 @@ class Abstinence
         $this->id = $id;
         $this->status = self::STATUS_ACTIVE;
         $this->startedAt = new \DateTimeImmutable();
+        $this->violations = new ArrayCollection();
     }
 
     /**
@@ -117,7 +119,7 @@ class Abstinence
      */
     public function getViolations() : array
     {
-        return $this->violations;
+        return $this->violations->toArray();
     }
 
     /**
@@ -172,6 +174,6 @@ class Abstinence
      */
     public function getLastViolation() : Violation
     {
-        return $this->violations[count($this->violations) - 1];
+        return $this->violations->last();
     }
 }
