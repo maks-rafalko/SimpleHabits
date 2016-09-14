@@ -2,9 +2,7 @@
 
 namespace spec\SimpleHabits\Domain\Model\User;
 
-use SimpleHabits\Domain\Model\User\User;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 use SimpleHabits\Domain\Model\User\UserId;
 
 class UserSpec extends ObjectBehavior
