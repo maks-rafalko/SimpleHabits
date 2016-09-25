@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleHabits\Infrastructure\Domain\Model\Violation;
+namespace SimpleHabits\Infrastructure\Domain\Model\User;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\GuidType;
