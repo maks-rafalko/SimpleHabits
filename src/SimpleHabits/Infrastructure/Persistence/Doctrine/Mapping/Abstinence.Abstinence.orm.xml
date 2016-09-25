@@ -24,6 +24,9 @@
                     <join-column name="violation_id" referenced-column-name="id" unique="true" />
                 </inverse-join-columns>
             </join-table>
+            <order-by>
+                <order-by-field name="violatedAt" direction="ASC"/>
+            </order-by>
         </many-to-many>
     </entity>
 </doctrine-mapping>
