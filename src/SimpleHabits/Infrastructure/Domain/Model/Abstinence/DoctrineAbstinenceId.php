@@ -19,7 +19,11 @@ class DoctrineAbstinenceId extends GuidType
      */
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
-        return $value->id();
+        if ($value instanceof AbstinenceId) {
+            return $value->id();
+        }
+
+        return $value;
     }
 
     /**

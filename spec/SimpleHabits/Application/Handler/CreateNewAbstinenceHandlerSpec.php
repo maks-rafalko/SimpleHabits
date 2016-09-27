@@ -7,6 +7,7 @@ use Prophecy\Argument;
 use SimpleHabits\Application\Command\CreateNewAbstinenceCommand;
 use SimpleHabits\Domain\Model\Abstinence\Abstinence;
 use SimpleHabits\Domain\Model\Abstinence\AbstinenceRepository;
+use SimpleHabits\Domain\Model\User\UserId;
 
 class CreateNewAbstinenceHandlerSpec extends ObjectBehavior
 {
@@ -19,7 +20,7 @@ class CreateNewAbstinenceHandlerSpec extends ObjectBehavior
 
     public function it_should_add_new_abstinence_to_repository(AbstinenceRepository $abstinenceRepository)
     {
-        $command = new CreateNewAbstinenceCommand(self::NAME);
+        $command = new CreateNewAbstinenceCommand(new UserId(), self::NAME);
 
         $abstinenceRepository->add(
             Argument::type(Abstinence::class)

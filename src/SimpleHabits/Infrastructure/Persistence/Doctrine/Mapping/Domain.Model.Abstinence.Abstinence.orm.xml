@@ -11,6 +11,7 @@
         <field name="name" type="string" length="255" />
         <field name="startedAt" type="datetime" column="started_at" />
         <field name="status" type="smallint" />
+        <field name="userId" type="userId" column="user_id" />
 
         <many-to-many field="violations" target-entity="SimpleHabits\Domain\Model\Violation\Violation" fetch="EAGER">
             <cascade>

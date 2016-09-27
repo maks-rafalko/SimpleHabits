@@ -2,10 +2,15 @@
 # http://symfony.com/doc/current/book/security.html
 security:
 
-    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+    encoders:
+        SimpleHabits\Infrastructure\Domain\Model\User\User:
+            algorithm: bcrypt
+
     providers:
-        in_memory:
-            memory: ~
+        db_provider:
+            entity:
+                class: SimpleHabits:Infrastructure\Domain\Model\User\User
+                property: username
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -15,10 +20,11 @@ security:
 
         main:
             anonymous: ~
-            # activate different ways to authenticate
+            provider: db_provider
+            form_login:
+                login_path: login
+                check_path: login
 
-            # http_basic: ~
-            # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
-
-            # form_login: ~
-            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+    access_control:
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/abstinences, roles: ROLE_USER }

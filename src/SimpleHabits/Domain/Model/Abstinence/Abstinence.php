@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleHabits\Domain\Model\Abstinence;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use SimpleHabits\Domain\Model\User\UserId;
 use SimpleHabits\Domain\Model\Violation\Violation;
 use SimpleHabits\Domain\Model\Violation\ViolationId;
 
@@ -20,6 +21,11 @@ class Abstinence
      * @var AbstinenceId
      */
     private $id;
+
+    /**
+     * @var UserId
+     */
+    private $userId;
 
     /**
      * @var string
@@ -44,13 +50,15 @@ class Abstinence
     /**
      * Abstinence constructor.
      *
+     * @param UserId       $userId
      * @param AbstinenceId $id
      * @param string       $name
      */
-    public function __construct(AbstinenceId $id, string $name)
+    public function __construct(UserId $userId, AbstinenceId $id, string $name)
     {
         $this->changeName($name);
 
+        $this->userId = $userId;
         $this->id = $id;
         $this->status = self::STATUS_ACTIVE;
         $this->startedAt = new \DateTimeImmutable();
@@ -175,5 +183,13 @@ class Abstinence
     public function getLastViolation() : Violation
     {
         return $this->violations->last();
+    }
+
+    /**
+     * @return UserId
+     */
+    public function getUserId() : UserId
+    {
+        return $this->userId;
     }
 }

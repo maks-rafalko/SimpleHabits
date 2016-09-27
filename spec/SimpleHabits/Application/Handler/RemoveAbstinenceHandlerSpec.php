@@ -9,6 +9,7 @@ use SimpleHabits\Domain\Model\Abstinence\Abstinence;
 use SimpleHabits\Domain\Model\Abstinence\AbstinenceId;
 use SimpleHabits\Domain\Model\Abstinence\AbstinenceRepository;
 use SimpleHabits\Domain\Model\Abstinence\Exception\AbstinenceDoesNotExistException;
+use SimpleHabits\Domain\Model\User\UserId;
 
 class RemoveAbstinenceHandlerSpec extends ObjectBehavior
 {
@@ -52,6 +53,6 @@ class RemoveAbstinenceHandlerSpec extends ObjectBehavior
      */
     private function createAbstinence()
     {
-        return new Abstinence(new AbstinenceId(), self::NAME);
+        return new Abstinence(new UserId(), new AbstinenceId(), self::NAME);
     }
 }

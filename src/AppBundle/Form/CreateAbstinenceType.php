@@ -4,6 +4,7 @@ namespace AppBundle\Form;
 
 use SimpleHabits\Application\Command\CreateNewAbstinenceCommand;
 use SimpleHabits\Domain\Model\Abstinence\Abstinence;
+use SimpleHabits\Domain\Model\User\UserId;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -46,12 +47,18 @@ class CreateAbstinenceType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
+            'user' => null,
             'data_class' => 'SimpleHabits\Application\Command\CreateNewAbstinenceCommand',
             'empty_data' => function (FormInterface $form) {
+                $userId = $form->getConfig()->getOption('user')->getId();
+
                 return new CreateNewAbstinenceCommand(
+                    new UserId($userId),
                     $form->get('name')->getData()
                 );
             },
         ]);
+
+        $resolver->setRequired(['user']);
     }
 }

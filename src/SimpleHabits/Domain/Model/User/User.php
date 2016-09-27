@@ -11,28 +11,35 @@ class User
     /**
      * @var UserId
      */
-    private $userId;
+    protected $id;
 
     /**
      * @var string
      */
-    private $email;
+    protected $username;
 
     /**
      * @var string
      */
-    private $password;
+    protected $email;
+
+    /**
+     * @var string
+     */
+    protected $password;
 
     /**
      * User constructor.
      *
      * @param UserId $userId
+     * @param string $username
      * @param string $email
      * @param string $password
      */
-    public function __construct(UserId $userId, string $email, string $password)
+    public function __construct(UserId $userId, string $username, string $email, string $password)
     {
-        $this->userId = $userId;
+        $this->id = $userId;
+        $this->username = $username;
         $this->email = $email;
         $this->password = $password;
     }
@@ -42,7 +49,7 @@ class User
      */
     public function getId() : UserId
     {
-        return $this->userId;
+        return $this->id;
     }
 
     /**
@@ -69,5 +76,13 @@ class User
         \Assert\that($password)->notEmpty()->string()->minLength(self::PASSWORD_MIN_LENGTH);
 
         $this->password = $password;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUsername() : string
+    {
+        return $this->username;
     }
 }

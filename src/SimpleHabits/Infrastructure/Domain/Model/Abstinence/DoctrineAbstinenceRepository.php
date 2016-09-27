@@ -30,7 +30,7 @@ class DoctrineAbstinenceRepository implements AbstinenceRepository
     public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
-        $this->repository = $this->em->getRepository('SimpleHabits:Abstinence\Abstinence');
+        $this->repository = $this->em->getRepository('SimpleHabits:Domain\Model\Abstinence\Abstinence');
     }
 
     /**
@@ -64,13 +64,14 @@ class DoctrineAbstinenceRepository implements AbstinenceRepository
      */
     public function findByUserId($userId)
     {
-        // TODO rewrite it when user-abstinence realtion is created
         $qb = $this->repository->createQueryBuilder('a');
 
         return $qb->select('a, v')
+            ->where('a.userId = :userId')
             ->leftJoin('a.violations', 'v')
             ->orderBy('a.startedAt', 'ASC')
             ->getQuery()
+            ->setParameter(':userId', $userId)
             ->getResult();
     }
 }

@@ -61,7 +61,7 @@ doctrine:
                 type: xml
                 dir: '%kernel.root_dir%/../src/SimpleHabits/Infrastructure/Persistence/Doctrine/Mapping'
                 is_bundle: false
-                prefix: SimpleHabits\Domain\Model
+                prefix: SimpleHabits
                 alias: SimpleHabits
 
 # Swiftmailer Configuration

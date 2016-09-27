@@ -8,6 +8,7 @@ use SimpleHabits\Application\Command\UpdateAbstinenceCommand;
 use SimpleHabits\Domain\Model\Abstinence\Abstinence;
 use SimpleHabits\Domain\Model\Abstinence\AbstinenceId;
 use SimpleHabits\Domain\Model\Abstinence\AbstinenceRepository;
+use SimpleHabits\Domain\Model\User\UserId;
 
 class UpdateAbstinenceHandlerSpec extends ObjectBehavior
 {
@@ -61,6 +62,6 @@ class UpdateAbstinenceHandlerSpec extends ObjectBehavior
      */
     private function createAbstinence()
     {
-        return new Abstinence(new AbstinenceId(), self::NAME);
+        return new Abstinence(new UserId(), new AbstinenceId(), self::NAME);
     }
 }

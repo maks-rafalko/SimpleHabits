@@ -6,6 +6,7 @@ namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use SimpleHabits\Application\Command\AddViolationCommand;
+use SimpleHabits\Domain\Model\Abstinence\Abstinence;
 use SimpleHabits\Domain\Model\Abstinence\AbstinenceId;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,7 +20,8 @@ class AbstinencesController extends Controller
     public function listAction()
     {
         // TODO return DTO but not entities (readService? investigate it) ->toArray?
-        $abstinences = $this->get('app.repository.abstinence')->findByUserId(1);
+        $userId = $this->getUser()->getId();
+        $abstinences = $this->get('app.repository.abstinence')->findByUserId($userId);
 
         return $this->render('abstinence/list.html.twig', [
             'abstinences' => $abstinences,
@@ -31,7 +33,7 @@ class AbstinencesController extends Controller
      */
     public function createAction(Request $request)
     {
-        $form = $this->createForm(CreateAbstinenceType::class);
+        $form = $this->createForm(CreateAbstinenceType::class, null, ['user' => $this->getUser()]);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -47,11 +49,15 @@ class AbstinencesController extends Controller
     /**
      * @Route("/abstinences/{id}/violate", name="abstinences_violate")
      */
-    public function violateAction($id)
+    public function violateAction(Abstinence $abstinence)
     {
-        // TODO check that this abstinence is owned by current user
+        $currentUserId = $this->getUser()->getId();
 
-        $command = new AddViolationCommand(new AbstinenceId($id));
+        if (!$abstinence->getUserId()->equals($currentUserId)) {
+            throw $this->createAccessDeniedException();
+        }
+
+        $command = new AddViolationCommand($abstinence->getId());
         $this->get('tactician.commandbus')->handle($command);
 
         return $this->redirectToRoute('abstinences');

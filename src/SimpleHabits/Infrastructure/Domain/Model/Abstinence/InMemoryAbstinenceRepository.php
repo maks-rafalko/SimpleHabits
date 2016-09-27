@@ -5,6 +5,7 @@ namespace SimpleHabits\Infrastructure\Domain\Model\Abstinence;
 use SimpleHabits\Domain\Model\Abstinence\Abstinence;
 use SimpleHabits\Domain\Model\Abstinence\AbstinenceId;
 use SimpleHabits\Domain\Model\Abstinence\AbstinenceRepository;
+use SimpleHabits\Domain\Model\User\UserId;
 
 class InMemoryAbstinenceRepository implements AbstinenceRepository
 {
@@ -53,7 +54,13 @@ class InMemoryAbstinenceRepository implements AbstinenceRepository
      */
     public function findByUserId($userId)
     {
-        // TODO rewrite it after User->Abstinence relation is created
-        return $this->abstinences;
+        $userIdObject = is_string($userId) ? new UserId($userId) : $userId;
+
+        return array_filter(
+            $this->abstinences,
+            function (Abstinence $abstinence) use ($userIdObject) {
+                return $abstinence->getUserId()->equals($userIdObject);
+            }
+        );
     }
 }

@@ -8,6 +8,7 @@ use Assert\AssertionFailedException;
 use PhpSpec\ObjectBehavior;
 use SimpleHabits\Domain\Model\Abstinence\AbstinenceId;
 use SimpleHabits\Domain\Model\Abstinence\DayStreak;
+use SimpleHabits\Domain\Model\User\UserId;
 use SimpleHabits\Domain\Model\Violation\Violation;
 
 class AbstinenceSpec extends ObjectBehavior
@@ -17,12 +18,17 @@ class AbstinenceSpec extends ObjectBehavior
 
     public function let()
     {
-        $this->beConstructedWith(new AbstinenceId(), self::NAME);
+        $this->beConstructedWith(new UserId(), new AbstinenceId(), self::NAME);
     }
 
     public function it_should_have_an_id()
     {
         $this->getId()->shouldReturnAnInstanceOf(AbstinenceId::class);
+    }
+
+    public function it_should_have_a_user_id()
+    {
+        $this->getUserId()->shouldReturnAnInstanceOf(UserId::class);
     }
 
     public function it_has_a_name()
@@ -68,7 +74,7 @@ class AbstinenceSpec extends ObjectBehavior
 
     public function it_throws_an_exception_when_name_is_empty()
     {
-        $this->beConstructedWith(new AbstinenceId(), '');
+        $this->beConstructedWith(new UserId(), new AbstinenceId(), '');
         $this->shouldThrow(AssertionFailedException::class)->duringInstantiation();
     }
 

@@ -9,6 +9,7 @@ use SimpleHabits\Domain\Model\Abstinence\Abstinence;
 use SimpleHabits\Domain\Model\Abstinence\AbstinenceId;
 use SimpleHabits\Domain\Model\Abstinence\AbstinenceRepository;
 use SimpleHabits\Domain\Model\Abstinence\Exception\AbstinenceDoesNotExistException;
+use SimpleHabits\Domain\Model\User\UserId;
 
 class AddViolationHandlerSpec extends ObjectBehavior
 {
@@ -55,6 +56,6 @@ class AddViolationHandlerSpec extends ObjectBehavior
      */
     private function createAbstinence()
     {
-        return new Abstinence(new AbstinenceId(), 'Do not smoke');
+        return new Abstinence(new UserId(), new AbstinenceId(), 'Do not smoke');
     }
 }
