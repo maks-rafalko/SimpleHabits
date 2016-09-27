@@ -11,7 +11,9 @@ class SecurityController extends Controller
 {
     /**
      * @Route("/login", name="login")
+     *
      * @param Request $request
+     *
      * @return Response
      */
     public function loginAction(Request $request)
@@ -26,7 +28,7 @@ class SecurityController extends Controller
 
         return $this->render('security/login.html.twig', array(
             'last_username' => $lastUsername,
-            'error'         => $error,
+            'error' => $error,
         ));
     }
 }

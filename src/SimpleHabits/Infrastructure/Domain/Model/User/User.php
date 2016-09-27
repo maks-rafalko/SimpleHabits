@@ -15,16 +15,14 @@ class User extends BaseUser implements UserInterface
         return ['ROLE_USER'];
     }
 
-    /**
-     * @return null
-     */
+
     public function getSalt()
     {
         return null;
     }
 
     /**
-     * Erase credentials
+     * Erase credentials.
      */
     public function eraseCredentials()
     {

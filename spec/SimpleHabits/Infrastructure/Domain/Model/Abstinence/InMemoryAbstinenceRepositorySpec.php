@@ -41,8 +41,8 @@ class InMemoryAbstinenceRepositorySpec extends ObjectBehavior
         $userId = new UserId();
 
         $this->add(new Abstinence($userId, new AbstinenceId(), self::NAME));
-        $this->add(new Abstinence($userId, new AbstinenceId(), self::NAME . ' 2'));
-        $this->add(new Abstinence(new UserId(), new AbstinenceId(), self::NAME . ' 3'));
+        $this->add(new Abstinence($userId, new AbstinenceId(), self::NAME.' 2'));
+        $this->add(new Abstinence(new UserId(), new AbstinenceId(), self::NAME.' 3'));
 
         $this->findByUserId($userId)->shouldHaveCount(2);
     }

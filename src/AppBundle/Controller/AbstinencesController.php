@@ -7,7 +7,6 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use SimpleHabits\Application\Command\AddViolationCommand;
 use SimpleHabits\Domain\Model\Abstinence\Abstinence;
-use SimpleHabits\Domain\Model\Abstinence\AbstinenceId;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Form\CreateAbstinenceType;
