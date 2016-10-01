@@ -15,7 +15,6 @@ class User extends BaseUser implements UserInterface
         return ['ROLE_USER'];
     }
 
-
     public function getSalt()
     {
         return null;
