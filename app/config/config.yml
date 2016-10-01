@@ -79,3 +79,9 @@ tactician:
                 - tactician.middleware.locking
                 - tactician.middleware.doctrine
                 - tactician.middleware.command_handler
+
+doctrine_migrations:
+    dir_name: "%kernel.root_dir%/../src/SimpleHabits/Infrastructure/Persistence/Doctrine/DoctrineMigrations"
+    namespace: SimpleHabits\Infrastructure\Persistence\Doctrine
+    table_name: migration_versions
+    name: Application Migrations
