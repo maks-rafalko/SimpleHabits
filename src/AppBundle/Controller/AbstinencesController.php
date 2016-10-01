@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use SimpleHabits\Application\Command\AddViolationCommand;
 use SimpleHabits\Domain\Model\Abstinence\Abstinence;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -47,15 +48,10 @@ class AbstinencesController extends Controller
 
     /**
      * @Route("/abstinences/{id}/violate", name="abstinences_violate")
+     * @Security("user.getId().equals(abstinence.getUserId())")
      */
     public function violateAction(Abstinence $abstinence)
     {
-        $currentUserId = $this->getUser()->getId();
-
-        if (!$abstinence->getUserId()->equals($currentUserId)) {
-            throw $this->createAccessDeniedException();
-        }
-
         $command = new AddViolationCommand($abstinence->getId());
         $this->get('tactician.commandbus')->handle($command);
 
