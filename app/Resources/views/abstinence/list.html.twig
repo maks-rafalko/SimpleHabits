@@ -14,10 +14,11 @@
                 {% for abstinence in abstinences %}
                     <li>
                         {{ abstinence.name }} ({{ abstinence.calculateDayStreak.getDayStreakCount() }} days streak)
-                        <a href="{{ url('abstinences_violates_new', {id: abstinence.id}) }}">Violate</a>
+                        {% if abstinence.isActive %}
+                            <a href="{{ url('abstinences_violates_new', {id: abstinence.id}) }}">Violate</a>
+                            {{ form(deleteForms[abstinence.id.id]) }}
+                        {% endif %}
                         <a href="{{ url('abstinence', {id: abstinence.id}) }}">View</a>
-
-                        {{ form(deleteForms[abstinence.id.id]) }}
                     </li>
                 {% endfor %}
             </ul>

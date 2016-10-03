@@ -31,7 +31,7 @@ class AbstinencesController extends Controller
     }
 
     /**
-     * @Route("/abstinences/{id}", name="abstinence")
+     * @Route("/abstinences/{id}", name="abstinence", requirements={"id": "[\da-z\-]{36}"})
      * @Security("user.getId().equals(abstinence.getUserId())")
      */
     public function viewAction(Abstinence $abstinence)
