@@ -29,7 +29,7 @@ class AbstinencesController extends Controller
     }
 
     /**
-     * @Route("/abstinences/{id}", name="abstinence")
+     * @Route("/abstinences/{id}", name="abstinence", requirements={"id": "[\da-z\-]{36}"})
      * @Security("user.getId().equals(abstinence.getUserId())")
      */
     public function viewAction(Abstinence $abstinence)
@@ -50,6 +50,8 @@ class AbstinencesController extends Controller
         if ($form->isValid()) {
             $command = $form->getData();
             $this->get('tactician.commandbus')->handle($command);
+
+            return $this->redirectToRoute('abstinences');
         }
 
         return $this->render('abstinence/create.html.twig', [

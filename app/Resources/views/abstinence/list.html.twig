@@ -8,8 +8,8 @@
                 {% for abstinence in abstinences %}
                     <li>
                         {{ abstinence.name }} ({{ abstinence.calculateDayStreak.getDayStreakCount() }} days streak)
-                        <a href="{{ url('abstinences_violates_new', {id: abstinence.id}) }}">Violate</a>
-                        <a href="{{ url('abstinence', {id: abstinence.id}) }}">Viewe</a>
+                        {% if abstinence.isActive %}<a href="{{ url('abstinences_violates_new', {id: abstinence.id}) }}">Violate</a>{% endif %}
+                        <a href="{{ url('abstinence', {id: abstinence.id}) }}">View</a>
                     </li>
                 {% endfor %}
             </ul>
