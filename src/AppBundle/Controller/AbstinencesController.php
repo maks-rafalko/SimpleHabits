@@ -58,7 +58,7 @@ class AbstinencesController extends Controller
     }
 
     /**
-     * @Route("/abstinences/{id}/violates/new", name="abstinences_violates_new", methods={"GET"})
+     * @Route("/abstinences/{id}/violations/new", name="abstinences_violates_new", methods={"GET"})
      * @Security("user.getId().equals(abstinence.getUserId())")
      */
     public function addViolationAction(Abstinence $abstinence, Request $request)
@@ -75,7 +75,7 @@ class AbstinencesController extends Controller
     }
 
     /**
-     * @Route("/abstinences/{id}/violates", name="abstinences_violate", methods={"POST"})
+     * @Route("/abstinences/{id}/violations", name="abstinences_violate", methods={"POST"})
      * @Security("user.getId().equals(abstinence.getUserId())")
      */
     public function violateAction(Abstinence $abstinence, Request $request)
