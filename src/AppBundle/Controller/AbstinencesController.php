@@ -64,7 +64,7 @@ class AbstinencesController extends Controller
     public function addViolationAction(Abstinence $abstinence, Request $request)
     {
         $form = $this->createForm(CreateViolationType::class, null, [
-            'action' => $this->generateUrl('abstinences_violate', ['id' => $abstinence->getId()])
+            'action' => $this->generateUrl('abstinences_violate', ['id' => $abstinence->getId()]),
         ]);
         $form->handleRequest($request);
 
