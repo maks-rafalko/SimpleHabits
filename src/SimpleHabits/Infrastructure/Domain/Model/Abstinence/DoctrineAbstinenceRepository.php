@@ -38,8 +38,6 @@ class DoctrineAbstinenceRepository implements AbstinenceRepository
      */
     public function add(Abstinence $abstinence)
     {
-        // TODO check whether we should write a spec for it or no
-
         $this->em->persist($abstinence);
     }
 
@@ -48,7 +46,7 @@ class DoctrineAbstinenceRepository implements AbstinenceRepository
      */
     public function remove(Abstinence $abstinence)
     {
-        // TODO complete
+        $this->em->remove($abstinence);
     }
 
     /**
@@ -60,7 +58,8 @@ class DoctrineAbstinenceRepository implements AbstinenceRepository
     }
 
     /**
-     * {@inheritdoc}
+     * @param $userId
+     * @return Abstinence[]
      */
     public function findByUserId($userId)
     {

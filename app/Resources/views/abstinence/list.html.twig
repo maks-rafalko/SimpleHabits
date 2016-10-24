@@ -3,13 +3,21 @@
 {% block body %}
     <div id="wrapper">
         <div id="container">
+            {% for flash_message in app.session.flashBag.get('notice') %}
+                <div class="flash-notice">
+                    {{ flash_message }}
+                </div>
+            {% endfor %}
+
             <a href="{{ url('abstinences_create') }}">Create Abstinence</a>
             <ul>
                 {% for abstinence in abstinences %}
                     <li>
                         {{ abstinence.name }} ({{ abstinence.calculateDayStreak.getDayStreakCount() }} days streak)
                         <a href="{{ url('abstinences_violates_new', {id: abstinence.id}) }}">Violate</a>
-                        <a href="{{ url('abstinence', {id: abstinence.id}) }}">Viewe</a>
+                        <a href="{{ url('abstinence', {id: abstinence.id}) }}">View</a>
+
+                        {{ form(deleteForms[abstinence.id.id]) }}
                     </li>
                 {% endfor %}
             </ul>

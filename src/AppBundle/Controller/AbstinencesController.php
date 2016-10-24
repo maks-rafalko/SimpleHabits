@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace AppBundle\Controller;
 
 use AppBundle\Form\CreateViolationType;
+use AppBundle\Form\RemoveAbstinenceType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use SimpleHabits\Application\Command\RemoveAbstinenceCommand;
 use SimpleHabits\Domain\Model\Abstinence\Abstinence;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,12 +21,12 @@ class AbstinencesController extends Controller
      */
     public function listAction()
     {
-        // TODO return DTO but not entities (readService? investigate it) ->toArray?
         $userId = $this->getUser()->getId();
         $abstinences = $this->get('app.repository.abstinence')->findByUserId($userId);
 
         return $this->render('abstinence/list.html.twig', [
             'abstinences' => $abstinences,
+            'deleteForms' => $this->buildDeleteForms($abstinences),
         ]);
     }
 
@@ -50,6 +52,10 @@ class AbstinencesController extends Controller
         if ($form->isValid()) {
             $command = $form->getData();
             $this->get('tactician.commandbus')->handle($command);
+
+            $this->addFlash('notice', 'Abstinence has been created.');
+
+            return $this->redirectToRoute('abstinences');
         }
 
         return $this->render('abstinence/create.html.twig', [
@@ -87,6 +93,8 @@ class AbstinencesController extends Controller
             $command = $form->getData();
             $this->get('tactician.commandbus')->handle($command);
 
+            $this->addFlash('notice', 'Abstinence has been violated.');
+
             return $this->redirectToRoute('abstinences');
         }
 
@@ -94,5 +102,41 @@ class AbstinencesController extends Controller
             'abstinence' => $abstinence,
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/abstinences/{id}/remove", name="abstinence_remove", methods={"DELETE"})
+     * @Security("user.getId().equals(abstinence.getUserId())")
+     */
+    public function removeAction(Abstinence $abstinence)
+    {
+        $command = new RemoveAbstinenceCommand($abstinence->getId());
+
+        $this->get('tactician.commandbus')->handle($command);
+
+        $this->addFlash('notice', 'Abstinence has been removed.');
+
+        return $this->redirectToRoute('abstinences');
+    }
+
+    /**
+     * @param array $abstinences
+     * @return array
+     */
+    private function buildDeleteForms(array $abstinences) : array
+    {
+        $deleteForms = [];
+        foreach ($abstinences as $abstinence) {
+            $form = $this
+                ->createForm(
+                    RemoveAbstinenceType::class,
+                    $abstinence,
+                    ['action' => $this->generateUrl('abstinence_remove', ['id' => $abstinence->getId()])]
+                )
+                ->createView();
+
+            $deleteForms[$abstinence->getId()->id()] = $form;
+        }
+        return $deleteForms;
     }
 }
