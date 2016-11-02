@@ -43,7 +43,7 @@ class Abstinence
     private $startedAt;
 
     /**
-     * @var array
+     * @var ArrayCollection
      */
     private $violations;
 
