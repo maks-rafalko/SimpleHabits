@@ -2,9 +2,7 @@
 
 namespace spec\SimpleHabits\Domain\Model\Goal;
 
-use SimpleHabits\Domain\Model\Goal\Goal;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 use SimpleHabits\Domain\Model\Goal\GoalId;
 use SimpleHabits\Domain\Model\Goal\GoalStep;
 use SimpleHabits\Domain\Model\Goal\GoalStepId;
@@ -90,5 +88,16 @@ class GoalSpec extends ObjectBehavior
         // TODO check how myDrinks adds recipes. should we pass an entity or values to create entity later?
         $this->addGoalStepWithValue(90);
         $this->getGoalSteps()->shouldHaveCount(1);
+    }
+
+    public function it_is_active_by_default()
+    {
+        $this->isActive()->shouldReturn(true);
+    }
+
+    public function it_can_be_deleted()
+    {
+        $this->delete();
+        $this->isDeleted()->shouldReturn(true);
     }
 }

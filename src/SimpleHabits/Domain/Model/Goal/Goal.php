@@ -2,11 +2,13 @@
 
 namespace SimpleHabits\Domain\Model\Goal;
 
-use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 
 class Goal
 {
+    const STATUS_DELETED = 0;
+    const STATUS_ACTIVE = 1;
+
     /**
      * @var GoalId
      */
@@ -18,7 +20,7 @@ class Goal
     private $name;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
     private $targetDate;
 
@@ -43,14 +45,19 @@ class Goal
     private $averagePerDay = 0;
 
     /**
+     * @var int
+     */
+    private $status;
+
+    /**
      * Goal constructor.
      * @param GoalId $goalId
      * @param string $name
-     * @param DateTimeInterface $targetDate
+     * @param \DateTimeInterface $targetDate
      * @param float|int $targetValue
      * @param float|int $initialValue
      */
-    public function __construct(GoalId $goalId, $name, DateTimeInterface $targetDate, $targetValue, $initialValue)
+    public function __construct(GoalId $goalId, $name, \DateTimeInterface $targetDate, $targetValue, $initialValue)
     {
         $this->goalId = $goalId;
         $this->name = $name;
@@ -58,6 +65,7 @@ class Goal
         $this->targetValue = $targetValue;
         $this->initialValue = $initialValue;
         $this->goalSteps = new ArrayCollection();
+        $this->status = self::STATUS_ACTIVE;
 
         $this->calculateAveragePerDay();
     }
@@ -79,9 +87,9 @@ class Goal
     }
 
     /**
-     * @param DateTimeInterface $newTargetDate
+     * @param \DateTimeInterface $newTargetDate
      */
-    public function changeTargetDate(DateTimeInterface $newTargetDate)
+    public function changeTargetDate(\DateTimeInterface $newTargetDate)
     {
         $this->targetDate = $newTargetDate;
     }
@@ -111,7 +119,7 @@ class Goal
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
     public function getTargetDate() : \DateTimeInterface
     {
@@ -151,6 +159,30 @@ class Goal
     }
 
     /**
+     * Mark this abstinence as deleted.
+     */
+    public function delete()
+    {
+        $this->status = self::STATUS_DELETED;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDeleted() : bool
+    {
+        return $this->status === self::STATUS_DELETED;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isActive() : bool
+    {
+        return $this->status === self::STATUS_ACTIVE;
+    }
+
+    /**
      * @return float
      */
     private function calculateAveragePerDay() : float
@@ -162,6 +194,8 @@ class Goal
         if ($diffInDays === 0) {
             return 0;
         }
+
+        // TODO initial value -> get from steps last value
 
         return $this->averagePerDay = abs($this->targetValue - $this->initialValue) / $diffInDays;
     }
