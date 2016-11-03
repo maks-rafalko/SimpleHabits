@@ -143,6 +143,14 @@ class Goal
     }
 
     /**
+     * @param float|int
+     */
+    public function addGoalStepWithValue($value)
+    {
+        $this->goalSteps[] = new GoalStep(new GoalStepId(), $value);
+    }
+
+    /**
      * @return float
      */
     private function calculateAveragePerDay() : float

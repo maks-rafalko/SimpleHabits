@@ -6,6 +6,8 @@ use SimpleHabits\Domain\Model\Goal\Goal;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use SimpleHabits\Domain\Model\Goal\GoalId;
+use SimpleHabits\Domain\Model\Goal\GoalStep;
+use SimpleHabits\Domain\Model\Goal\GoalStepId;
 
 class GoalSpec extends ObjectBehavior
 {
@@ -81,5 +83,12 @@ class GoalSpec extends ObjectBehavior
     public function it_should_have_automatically_calculated_average_per_day_value()
     {
         $this->getAveragePerDay()->shouldEqual(2.0);
+    }
+
+    public function it_can_add_goal_step()
+    {
+        // TODO check how myDrinks adds recipes. should we pass an entity or values to create entity later?
+        $this->addGoalStepWithValue(90);
+        $this->getGoalSteps()->shouldHaveCount(1);
     }
 }
