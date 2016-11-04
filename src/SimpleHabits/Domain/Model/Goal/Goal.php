@@ -22,6 +22,11 @@ class Goal
     /**
      * @var \DateTimeInterface
      */
+    private $startedAt;
+
+    /**
+     * @var \DateTimeInterface
+     */
     private $targetDate;
 
     /**
@@ -38,11 +43,6 @@ class Goal
      * @var ArrayCollection
      */
     private $goalSteps;
-
-    /**
-     * @var float
-     */
-    private $averagePerDay = 0;
 
     /**
      * @var int
@@ -66,8 +66,7 @@ class Goal
         $this->initialValue = $initialValue;
         $this->goalSteps = new ArrayCollection();
         $this->status = self::STATUS_ACTIVE;
-
-        $this->calculateAveragePerDay();
+        $this->startedAt = new \DateTimeImmutable();
     }
 
     /**
@@ -111,14 +110,6 @@ class Goal
     }
 
     /**
-     * @return float
-     */
-    public function getAveragePerDay() : float
-    {
-        return $this->averagePerDay;
-    }
-
-    /**
      * @return \DateTimeInterface
      */
     public function getTargetDate() : \DateTimeInterface
@@ -151,11 +142,18 @@ class Goal
     }
 
     /**
-     * @param float|int
+     * @param $value
+     * @param \DateTimeInterface|null $date
      */
-    public function addGoalStepWithValue($value)
+    public function addGoalStepWithValue($value, $date = null)
     {
-        $this->goalSteps[] = new GoalStep(new GoalStepId(), $value);
+        // TODO read where invariant should be guarded (in Aggregate root or in other entities)
+        \Assert\that($date)
+            ->nullOr()
+            ->moreThan($this->startedAt)
+            ->lessOrEqualThan(new \DateTimeImmutable());
+
+        $this->goalSteps[] = new GoalStep(new GoalStepId(), $value, $date);
     }
 
     /**
@@ -183,9 +181,17 @@ class Goal
     }
 
     /**
+     * @return \DateTimeInterface
+     */
+    public function getStartedAt() : \DateTimeInterface
+    {
+        return $this->startedAt;
+    }
+
+    /**
      * @return float
      */
-    private function calculateAveragePerDay() : float
+    public function calculateAveragePerDay() : float
     {
         $interval = $this->targetDate->diff(new \DateTimeImmutable());
 
@@ -194,9 +200,16 @@ class Goal
         if ($diffInDays === 0) {
             return 0;
         }
+        
+        $lastRecordedValue = $this->initialValue;
 
-        // TODO initial value -> get from steps last value
+        /** @var GoalStep $lastRecorderStep */
+        $lastRecorderStep = $this->goalSteps->last();
+        
+        if ($lastRecordedValue !== null) {
+            $lastRecordedValue = $lastRecorderStep->getValue();
+        }
 
-        return $this->averagePerDay = abs($this->targetValue - $this->initialValue) / $diffInDays;
+        return abs($this->targetValue - $lastRecordedValue) / $diffInDays;
     }
 }

@@ -37,6 +37,11 @@ class GoalSpec extends ObjectBehavior
         $this->getName()->shouldEqual(self::NAME);
     }
 
+    public function it_has_a_start_date()
+    {
+        $this->getStartedAt()->shouldReturnAnInstanceOf(\DateTimeInterface::class);
+    }
+
     public function it_has_a_target_date()
     {
         $this->getTargetDate()->shouldReturnAnInstanceOf(\DateTimeImmutable::class);
@@ -78,16 +83,30 @@ class GoalSpec extends ObjectBehavior
         $this->getGoalSteps()->shouldHaveCount(0);
     }
 
-    public function it_should_have_automatically_calculated_average_per_day_value()
+    public function it_should_have_calculated_average_per_day_value()
     {
-        $this->getAveragePerDay()->shouldEqual(2.0);
+        $this->calculateAveragePerDay()->shouldEqual(2.0);
     }
 
     public function it_can_add_goal_step()
     {
-        // TODO check how myDrinks adds recipes. should we pass an entity or values to create entity later?
         $this->addGoalStepWithValue(90);
         $this->getGoalSteps()->shouldHaveCount(1);
+    }
+
+    public function it_can_add_goal_step_with_particular_date()
+    {
+        // TODO add check that date is not less than created at
+        $date = new \DateTimeImmutable('+1 minute');
+
+        $this->addGoalStepWithValue(90, $date);
+        $this->getViolations()[0]->getRecorderAt()->shouldBeLike($date);
+    }
+
+    public function it_should_take_last_recorded_value_from_the_last_step()
+    {
+        $this->addGoalStepWithValue(85);
+        $this->calculateAveragePerDay()->shouldEqual(1.0);
     }
 
     public function it_is_active_by_default()
