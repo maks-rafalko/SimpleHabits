@@ -14,7 +14,7 @@ class AddViolationHandler
     private $abstinenceRepository;
 
     /**
-     * CreateNewAbstinenceHandler constructor.
+     * AddViolationHandler constructor.
      *
      * @param AbstinenceRepository $abstinenceRepository
      */

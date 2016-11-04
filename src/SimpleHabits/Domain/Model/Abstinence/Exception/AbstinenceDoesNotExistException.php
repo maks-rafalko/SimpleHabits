@@ -13,6 +13,6 @@ class AbstinenceDoesNotExistException extends \Exception
      */
     public static function withId(AbstinenceId $id)
     {
-        return new self(sprintf('User with id %s does not exist', $id));
+        return new self(sprintf('Abstinence with id %s does not exist', $id));
     }
 }
