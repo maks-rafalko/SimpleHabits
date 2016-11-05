@@ -59,6 +59,7 @@ class DoctrineAbstinenceRepository implements AbstinenceRepository
 
     /**
      * @param $userId
+     *
      * @return Abstinence[]
      */
     public function findByUserId($userId)

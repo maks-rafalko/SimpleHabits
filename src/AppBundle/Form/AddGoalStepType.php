@@ -14,7 +14,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Date;
-use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Range;
 
@@ -47,7 +46,7 @@ class AddGoalStepType extends AbstractType implements DataMapperInterface
                         new Date(),
                         new Range([
                             'min' => $options['goal']->getStartedAt()->format('Y-m-d'),
-                            'max' => 'now'
+                            'max' => 'now',
                         ]),
                     ],
                 ]

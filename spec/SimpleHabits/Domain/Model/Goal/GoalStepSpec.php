@@ -8,7 +8,7 @@ use SimpleHabits\Domain\Model\Goal\GoalStepId;
 class GoalStepSpec extends ObjectBehavior
 {
     const STEP_VALUE = 90;
-    
+
     public function let()
     {
         $this->beConstructedWith(

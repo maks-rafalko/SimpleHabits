@@ -6,7 +6,6 @@ use SimpleHabits\Domain\Model\Goal\Goal;
 use SimpleHabits\Domain\Model\Goal\GoalId;
 use SimpleHabits\Domain\Model\Goal\GoalRepository;
 use SimpleHabits\Application\Command\Goal\CreateNewGoalCommand;
-use SimpleHabits\Domain\Model\User\UserId;
 
 class CreateNewGoalHandler
 {
@@ -17,6 +16,7 @@ class CreateNewGoalHandler
 
     /**
      * CreateNewGoalHandler constructor.
+     *
      * @param GoalRepository $goalRepository
      */
     public function __construct(GoalRepository $goalRepository)

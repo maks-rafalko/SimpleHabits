@@ -2,7 +2,6 @@
 
 namespace SimpleHabits\Application\Command\Goal;
 
-
 use SimpleHabits\Domain\Model\Goal\GoalId;
 
 class RemoveGoalCommand
@@ -14,6 +13,7 @@ class RemoveGoalCommand
 
     /**
      * RemoveGoalCommand constructor.
+     *
      * @param GoalId $goalId
      */
     public function __construct(GoalId $goalId)

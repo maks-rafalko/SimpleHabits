@@ -4,7 +4,6 @@ namespace spec\SimpleHabits\Domain\Model\Goal;
 
 use SimpleHabits\Domain\Model\Goal\GoalStepId;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 class GoalStepIdSpec extends ObjectBehavior
 {

@@ -5,8 +5,6 @@ namespace spec\SimpleHabits\Domain\Model\Goal;
 use Assert\AssertionFailedException;
 use PhpSpec\ObjectBehavior;
 use SimpleHabits\Domain\Model\Goal\GoalId;
-use SimpleHabits\Domain\Model\Goal\GoalStep;
-use SimpleHabits\Domain\Model\Goal\GoalStepId;
 use SimpleHabits\Domain\Model\User\UserId;
 
 class GoalSpec extends ObjectBehavior

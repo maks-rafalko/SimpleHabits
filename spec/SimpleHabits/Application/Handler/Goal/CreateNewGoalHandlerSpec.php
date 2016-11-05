@@ -2,7 +2,6 @@
 
 namespace spec\SimpleHabits\Application\Handler\Goal;
 
-
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use SimpleHabits\Application\Command\Goal\CreateNewGoalCommand;

@@ -59,6 +59,7 @@ class DoctrineGoalRepository implements GoalRepository
 
     /**
      * @param $userId
+     *
      * @return Goal[]
      */
     public function findByUserId($userId)

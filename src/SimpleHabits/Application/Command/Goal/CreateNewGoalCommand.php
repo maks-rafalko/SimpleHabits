@@ -2,7 +2,6 @@
 
 namespace SimpleHabits\Application\Command\Goal;
 
-
 use SimpleHabits\Domain\Model\User\UserId;
 
 class CreateNewGoalCommand
@@ -34,11 +33,12 @@ class CreateNewGoalCommand
 
     /**
      * CreateNewGoalCommand constructor.
-     * @param UserId $userId
-     * @param string $name
+     *
+     * @param UserId             $userId
+     * @param string             $name
      * @param \DateTimeInterface $targetDate
-     * @param float $targetValue
-     * @param float $initialValue
+     * @param float              $targetValue
+     * @param float              $initialValue
      */
     public function __construct(UserId $userId, string $name, \DateTimeInterface $targetDate, $targetValue, $initialValue)
     {
