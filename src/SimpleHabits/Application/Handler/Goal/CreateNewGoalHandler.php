@@ -35,7 +35,7 @@ class CreateNewGoalHandler
         $targetValue = $createNewGoalCommand->getTargetValue();
         $initialValue = $createNewGoalCommand->getInitialValue();
 
-        $abstinence = new Goal(new GoalId(), $name, $targetDate, $targetValue, $initialValue);
+        $abstinence = new Goal($userId, new GoalId(), $name, $targetDate, $targetValue, $initialValue);
 
         $this->goalRepository->add($abstinence);
     }

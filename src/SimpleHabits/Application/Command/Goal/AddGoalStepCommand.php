@@ -25,9 +25,9 @@ class AddGoalStepCommand
      * AddGoalStepCommand constructor.
      * @param GoalId $goalId
      * @param float|int $value
-     * @param \DateTimeInterface $date
+     * @param \DateTimeInterface|null $date
      */
-    public function __construct(GoalId $goalId, $value, \DateTimeInterface $date)
+    public function __construct(GoalId $goalId, $value, \DateTimeInterface $date = null)
     {
         $this->goalId = $goalId;
         $this->value = $value;
@@ -41,7 +41,7 @@ class AddGoalStepCommand
     {
         return $this->goalId;
     }
-    
+
     /**
      * @return float|int
      */

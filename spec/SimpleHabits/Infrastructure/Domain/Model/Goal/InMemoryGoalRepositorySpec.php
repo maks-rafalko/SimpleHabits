@@ -5,6 +5,7 @@ namespace spec\SimpleHabits\Infrastructure\Domain\Model\Goal;
 use PhpSpec\ObjectBehavior;
 use SimpleHabits\Domain\Model\Goal\Goal;
 use SimpleHabits\Domain\Model\Goal\GoalId;
+use SimpleHabits\Domain\Model\User\UserId;
 use SimpleHabits\Infrastructure\Domain\Model\Goal\InMemoryGoalRepository;
 
 class InMemoryGoalRepositorySpec extends ObjectBehavior
@@ -36,8 +37,19 @@ class InMemoryGoalRepositorySpec extends ObjectBehavior
         $this->findById($id)->shouldReturn(null);
     }
 
-    private function generateGoal($id)
+    public function it_should_find_by_user_id()
     {
-        return new Goal($id, self::NAME, new \DateTimeImmutable('+1 month'), 1, 2);
+        $userId = new UserId();
+
+        $this->add($this->generateGoal(new GoalId(), $userId));
+        $this->add($this->generateGoal(new GoalId(), $userId));
+        $this->add($this->generateGoal(new GoalId(), new UserId()));
+
+        $this->findByUserId($userId)->shouldHaveCount(2);
+    }
+
+    private function generateGoal($id, $userId = null)
+    {
+        return new Goal($userId ?: new UserId(), $id, self::NAME, new \DateTimeImmutable('+1 month'), 1, 2);
     }
 }

@@ -2,10 +2,12 @@
 
 namespace spec\SimpleHabits\Domain\Model\Goal;
 
+use Assert\AssertionFailedException;
 use PhpSpec\ObjectBehavior;
 use SimpleHabits\Domain\Model\Goal\GoalId;
 use SimpleHabits\Domain\Model\Goal\GoalStep;
 use SimpleHabits\Domain\Model\Goal\GoalStepId;
+use SimpleHabits\Domain\Model\User\UserId;
 
 class GoalSpec extends ObjectBehavior
 {
@@ -19,6 +21,7 @@ class GoalSpec extends ObjectBehavior
         $targetDate = new \DateTimeImmutable('+15 days');
 
         $this->beConstructedWith(
+            new UserId(),
             new GoalId(),
             self::NAME,
             $targetDate,
@@ -30,6 +33,11 @@ class GoalSpec extends ObjectBehavior
     public function it_should_have_an_id()
     {
         $this->getId()->shouldReturnAnInstanceOf(GoalId::class);
+    }
+
+    public function it_should_have_a_user_id()
+    {
+        $this->getUserId()->shouldReturnAnInstanceOf(UserId::class);
     }
 
     public function it_has_a_name()
@@ -96,11 +104,17 @@ class GoalSpec extends ObjectBehavior
 
     public function it_can_add_goal_step_with_particular_date()
     {
-        // TODO add check that date is not less than created at
-        $date = new \DateTimeImmutable('+1 minute');
+        $date = new \DateTimeImmutable();
 
-        $this->addGoalStepWithValue(90, $date);
-        $this->getViolations()[0]->getRecorderAt()->shouldBeLike($date);
+        $this->addGoalStepWithValue(89, $date);
+        $this->getGoalSteps()[0]->getRecordedAt()->shouldBeLike($date);
+        $this->getGoalSteps()[0]->getValue()->shouldEqual(89);
+    }
+
+    public function it_throws_an_exception_when_target_date_changed_to_the_past()
+    {
+        $newStartDate = new \DateTimeImmutable('-1 day');
+        $this->shouldThrow(AssertionFailedException::class)->during('changeTargetDate', [$newStartDate]);
     }
 
     public function it_should_take_last_recorded_value_from_the_last_step()
@@ -118,5 +132,28 @@ class GoalSpec extends ObjectBehavior
     {
         $this->delete();
         $this->isDeleted()->shouldReturn(true);
+    }
+
+    public function it_should_have_last_recorded_value_by_default()
+    {
+        $this->getLastRecordedValue()->shouldEqual(self::INITIAL_VALUE);
+    }
+
+    public function it_should_have_last_recorded_value_with_added_steps()
+    {
+        $this->addGoalStepWithValue(85);
+        $this->getLastRecordedValue()->shouldEqual(85);
+    }
+
+    public function it_should_have_last_recorded_date_by_default()
+    {
+        $this->getLastRecordedDate()->shouldReturnAnInstanceOf(\DateTimeInterface::class);
+    }
+
+    public function it_should_have_last_recorded_date_with_added_steps()
+    {
+        $recordedDate = new \DateTimeImmutable();
+        $this->addGoalStepWithValue(85, $recordedDate);
+        $this->getLastRecordedDate()->shouldBeLike($recordedDate);
     }
 }

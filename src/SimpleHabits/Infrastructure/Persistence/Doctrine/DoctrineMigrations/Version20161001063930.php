@@ -19,6 +19,7 @@ class Version20161001063930 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('ALTER TABLE abstinences ADD CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users(id)');
+        $this->addSql('ALTER TABLE goals ADD CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users(id)');
     }
 
     /**
@@ -31,5 +32,8 @@ class Version20161001063930 extends AbstractMigration
 
         $this->addSql('ALTER TABLE `abstinences` DROP FOREIGN KEY `fk_user_id`;');
         $this->addSql('ALTER TABLE `abstinences` DROP INDEX `fk_user_id`;');
+
+        $this->addSql('ALTER TABLE `goals` DROP FOREIGN KEY `fk_user_id`;');
+        $this->addSql('ALTER TABLE `goals` DROP INDEX `fk_user_id`;');
     }
 }
