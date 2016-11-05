@@ -11,7 +11,7 @@ class GoalStep
      * @var GoalStepId
      */
     private $id;
-    
+
     /**
      * @var float|int
      */
@@ -20,7 +20,7 @@ class GoalStep
     /**
      * @var \DateTimeInterface
      */
-    private $recorderAt;
+    private $recordedAt;
 
     /**
      * GoalStep constructor.
@@ -32,7 +32,7 @@ class GoalStep
     {
         $this->id = $id;
         $this->value = $value;
-        $this->recorderAt = $recordedAt ?: new \DateTimeImmutable();
+        $this->recordedAt = $recordedAt ?: new \DateTimeImmutable();
     }
 
     /**
@@ -54,8 +54,8 @@ class GoalStep
     /**
      * @return \DateTimeInterface
      */
-    public function getRecorderAt()
+    public function getRecordedAt()
     {
-        return $this->recorderAt;
+        return $this->recordedAt;
     }
 }

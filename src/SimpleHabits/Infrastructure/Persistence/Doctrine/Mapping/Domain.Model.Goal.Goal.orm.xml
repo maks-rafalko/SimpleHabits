@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+        http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="SimpleHabits\Domain\Model\Goal\Goal" table="goals">
+
+        <id name="id" column="id" type="goalId"/>
+
+        <field name="name" type="string" length="255" />
+        <field name="status" type="smallint" />
+        <field name="startedAt" type="datetime" column="started_at" />
+        <field name="targetDate" type="datetime" column="target_date" />
+        <field name="targetValue" type="decimal" column="target_value" />
+        <field name="initialValue" type="decimal" column="initial_value" />
+
+        <field name="userId" type="userId" column="user_id" />
+
+        <many-to-many field="goalSteps" target-entity="SimpleHabits\Domain\Model\Goal\GoalStep" fetch="EAGER">
+            <cascade>
+                <cascade-persist/>
+            </cascade>
+            <join-table name="goal_goal_steps">
+                <join-columns>
+                    <join-column name="goal_id" referenced-column-name="id" on-delete="CASCADE" />
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="goal_step_id" referenced-column-name="id" unique="true" on-delete="CASCADE" />
+                </inverse-join-columns>
+            </join-table>
+            <order-by>
+                <order-by-field name="recordedAt" direction="ASC"/>
+            </order-by>
+        </many-to-many>
+    </entity>
+</doctrine-mapping>

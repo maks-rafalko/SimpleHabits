@@ -3,16 +3,25 @@
 namespace SimpleHabits\Domain\Model\Goal;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use SimpleHabits\Domain\Model\User\UserId;
 
 class Goal
 {
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 1;
 
+    const NAME_MIN_LENGTH = 1;
+    const NAME_MAX_LENGTH = 255;
+
     /**
      * @var GoalId
      */
-    private $goalId;
+    private $id;
+
+    /**
+     * @var UserId
+     */
+    private $userId;
 
     /**
      * @var string
@@ -51,22 +60,26 @@ class Goal
 
     /**
      * Goal constructor.
+     * @param UserId $userId
      * @param GoalId $goalId
      * @param string $name
      * @param \DateTimeInterface $targetDate
      * @param float|int $targetValue
      * @param float|int $initialValue
      */
-    public function __construct(GoalId $goalId, $name, \DateTimeInterface $targetDate, $targetValue, $initialValue)
+    public function __construct(UserId $userId, GoalId $goalId, $name, \DateTimeInterface $targetDate, $targetValue, $initialValue)
     {
-        $this->goalId = $goalId;
-        $this->name = $name;
-        $this->targetDate = $targetDate;
+        $this->userId = $userId;
+        $this->id = $goalId;
         $this->targetValue = $targetValue;
         $this->initialValue = $initialValue;
+        // TODO investigate is it ok to have only ID in a nested (not root) entity en the aggregate
         $this->goalSteps = new ArrayCollection();
         $this->status = self::STATUS_ACTIVE;
         $this->startedAt = new \DateTimeImmutable();
+
+        $this->changeTargetDate($targetDate);
+        $this->changeName($name);
     }
 
     /**
@@ -74,7 +87,15 @@ class Goal
      */
     public function getId() : GoalId
     {
-        return $this->goalId;
+        return $this->id;
+    }
+
+    /**
+     * @return UserId
+     */
+    public function getUserId(): UserId
+    {
+        return $this->userId;
     }
 
     /**
@@ -90,6 +111,8 @@ class Goal
      */
     public function changeTargetDate(\DateTimeInterface $newTargetDate)
     {
+        \Assert\that($newTargetDate)->greaterOrEqualThan(new \DateTimeImmutable());
+
         $this->targetDate = $newTargetDate;
     }
 
@@ -150,10 +173,24 @@ class Goal
         // TODO read where invariant should be guarded (in Aggregate root or in other entities)
         \Assert\that($date)
             ->nullOr()
-            ->moreThan($this->startedAt)
+            ->greaterOrEqualThan($this->startedAt)
             ->lessOrEqualThan(new \DateTimeImmutable());
 
         $this->goalSteps[] = new GoalStep(new GoalStepId(), $value, $date);
+    }
+
+    /**
+     * @param string $name
+     */
+    public function changeName(string $name)
+    {
+        \Assert\that($name)
+            ->notEmpty()
+            ->string()
+            ->minLength(self::NAME_MIN_LENGTH)
+            ->maxLength(self::NAME_MAX_LENGTH);
+
+        $this->name = $name;
     }
 
     /**
@@ -200,16 +237,40 @@ class Goal
         if ($diffInDays === 0) {
             return 0;
         }
-        
+
         $lastRecordedValue = $this->initialValue;
 
         /** @var GoalStep $lastRecorderStep */
         $lastRecorderStep = $this->goalSteps->last();
-        
-        if ($lastRecordedValue !== null) {
+
+        if ($lastRecorderStep) {
             $lastRecordedValue = $lastRecorderStep->getValue();
         }
 
         return abs($this->targetValue - $lastRecordedValue) / $diffInDays;
+    }
+
+    /**
+     * @return float|int
+     */
+    public function getLastRecordedValue()
+    {
+        if ($this->goalSteps->count() === 0) {
+            return $this->initialValue;
+        }
+
+        return $this->goalSteps->last()->getValue();
+    }
+
+    /**
+     * @return \DateTimeInterface
+     */
+    public function getLastRecordedDate() : \DateTimeInterface
+    {
+        if ($this->goalSteps->count() === 0) {
+            return $this->startedAt;
+        }
+
+        return $this->goalSteps->last()->getRecordedAt();
     }
 }

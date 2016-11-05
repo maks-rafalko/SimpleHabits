@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+        http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="SimpleHabits\Domain\Model\Goal\GoalStep" table="goal_steps">
+
+        <id name="id" column="id" type="goalStepId"/>
+
+        <field name="value" type="decimal" />
+        <field name="recordedAt" type="datetime" column="recorded_at" />
+
+    </entity>
+</doctrine-mapping>

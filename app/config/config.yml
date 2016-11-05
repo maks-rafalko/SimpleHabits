@@ -51,6 +51,8 @@ doctrine:
             abstinenceId: SimpleHabits\Infrastructure\Domain\Model\Abstinence\DoctrineAbstinenceId
             violationId: SimpleHabits\Infrastructure\Domain\Model\Violation\DoctrineViolationId
             userId: SimpleHabits\Infrastructure\Domain\Model\User\DoctrineUserId
+            goalId: SimpleHabits\Infrastructure\Domain\Model\Goal\DoctrineGoalId
+            goalStepId: SimpleHabits\Infrastructure\Domain\Model\Goal\DoctrineGoalStepId
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"

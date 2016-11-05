@@ -40,7 +40,7 @@ class CreateNewGoalCommand
      * @param float $targetValue
      * @param float $initialValue
      */
-    public function __construct(UserId $userId, $name, \DateTimeInterface $targetDate, $targetValue, $initialValue)
+    public function __construct(UserId $userId, string $name, \DateTimeInterface $targetDate, $targetValue, $initialValue)
     {
         $this->userId = $userId;
         $this->name = $name;
@@ -52,7 +52,7 @@ class CreateNewGoalCommand
     /**
      * @return UserId
      */
-    public function getUserId()
+    public function getUserId() : UserId
     {
         return $this->userId;
     }
@@ -68,7 +68,7 @@ class CreateNewGoalCommand
     /**
      * @return \DateTimeInterface
      */
-    public function getTargetDate(): \DateTimeInterface
+    public function getTargetDate() : \DateTimeInterface
     {
         return $this->targetDate;
     }
@@ -76,7 +76,7 @@ class CreateNewGoalCommand
     /**
      * @return float
      */
-    public function getTargetValue(): float
+    public function getTargetValue()
     {
         return $this->targetValue;
     }
@@ -84,7 +84,7 @@ class CreateNewGoalCommand
     /**
      * @return float
      */
-    public function getInitialValue(): float
+    public function getInitialValue()
     {
         return $this->initialValue;
     }

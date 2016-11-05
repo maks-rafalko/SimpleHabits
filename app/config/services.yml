@@ -9,6 +9,11 @@ services:
         arguments:
             - '@doctrine.orm.entity_manager'
 
+    app.repository.goal:
+        class: SimpleHabits\Infrastructure\Domain\Model\Goal\DoctrineGoalRepository
+        arguments:
+            - '@doctrine.orm.entity_manager'
+
     app.create_new_abstinence_handler:
         class: SimpleHabits\Application\Handler\CreateNewAbstinenceHandler
         arguments:
@@ -29,3 +34,24 @@ services:
             - '@app.repository.abstinence'
         tags:
             - { name: tactician.handler, command: SimpleHabits\Application\Command\RemoveAbstinenceCommand }
+
+    app.create_new_goal_handler:
+        class: SimpleHabits\Application\Handler\Goal\CreateNewGoalHandler
+        arguments:
+            - '@app.repository.goal'
+        tags:
+            - { name: tactician.handler, command: SimpleHabits\Application\Command\Goal\CreateNewGoalCommand }
+
+    app.remove_goal_handler:
+        class: SimpleHabits\Application\Handler\Goal\RemoveGoalHandler
+        arguments:
+            - '@app.repository.goal'
+        tags:
+            - { name: tactician.handler, command: SimpleHabits\Application\Command\Goal\RemoveGoalCommand }
+
+    app.add_goal_step_handler:
+        class: SimpleHabits\Application\Handler\Goal\AddGoalStepHandler
+        arguments:
+            - '@app.repository.goal'
+        tags:
+            - { name: tactician.handler, command: SimpleHabits\Application\Command\Goal\AddGoalStepCommand }
