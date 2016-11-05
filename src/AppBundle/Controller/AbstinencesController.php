@@ -121,6 +121,7 @@ class AbstinencesController extends Controller
 
     /**
      * @param array $abstinences
+     *
      * @return array
      */
     private function buildDeleteForms(array $abstinences) : array
@@ -137,6 +138,7 @@ class AbstinencesController extends Controller
 
             $deleteForms[$abstinence->getId()->id()] = $form;
         }
+
         return $deleteForms;
     }
 }

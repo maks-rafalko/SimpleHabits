@@ -60,12 +60,13 @@ class Goal
 
     /**
      * Goal constructor.
-     * @param UserId $userId
-     * @param GoalId $goalId
-     * @param string $name
+     *
+     * @param UserId             $userId
+     * @param GoalId             $goalId
+     * @param string             $name
      * @param \DateTimeInterface $targetDate
-     * @param float|int $targetValue
-     * @param float|int $initialValue
+     * @param float|int          $targetValue
+     * @param float|int          $initialValue
      */
     public function __construct(UserId $userId, GoalId $goalId, $name, \DateTimeInterface $targetDate, $targetValue, $initialValue)
     {

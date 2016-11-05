@@ -51,8 +51,8 @@ class CreateGoalType extends AbstractType
                     'constraints' => [
                         new Date(),
                         new Range([
-                            'min' => 'now'
-                        ])
+                            'min' => 'now',
+                        ]),
                     ],
                 ]
             )

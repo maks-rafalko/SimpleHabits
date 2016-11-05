@@ -3,7 +3,7 @@
 namespace SimpleHabits\Domain\Model\Goal;
 
 /**
- * Class GoalStep
+ * Class GoalStep.
  */
 class GoalStep
 {
@@ -24,8 +24,9 @@ class GoalStep
 
     /**
      * GoalStep constructor.
+     *
      * @param GoalStepId $id
-     * @param float|int $value
+     * @param float|int  $value
      * @param \DateTimeInterface|null
      */
     public function __construct(GoalStepId $id, $value, $recordedAt = null)

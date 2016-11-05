@@ -122,6 +122,7 @@ class GoalController extends Controller
 
     /**
      * @param array $goals
+     *
      * @return array
      */
     private function buildDeleteForms(array $goals) : array
@@ -138,6 +139,7 @@ class GoalController extends Controller
 
             $deleteForms[$goal->getId()->id()] = $form;
         }
+
         return $deleteForms;
     }
 }
