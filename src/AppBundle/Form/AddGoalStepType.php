@@ -11,7 +11,6 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Date;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -64,16 +63,6 @@ class AddGoalStepType extends AbstractType implements DataMapperInterface
             'goal' => null,
             'data_class' => AddGoalStepCommand::class,
             'empty_data' => null,
-
-//                function (FormInterface $form) {
-//                $goalId = $form->getConfig()->getOption('goal')->getId();
-//
-//                return new AddGoalStepCommand(
-//                    $goalId,
-//                    $form->get('value')->getData(),
-//                    $form->get('date')->getData()
-//                );
-//            },
         ]);
 
         $resolver->setRequired(['goal']);

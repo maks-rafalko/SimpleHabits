@@ -17,11 +17,12 @@
             <b>Average per day:</b> {{ goal.calculateAveragePerDay }}<br>
 
             <ul>
+                <li>Initially logged: {{ goal.initialValue }}, {{ goal.startedAt|date }}</li>
                 {% set goalSteps = goal.getGoalSteps() %}
                 {% for step in goalSteps %}
                     <li>
                         {% if step.value %}value: {{ step.value }}{% endif %}
-                        date: {{ step.recordedAt|date('Y-m-d H:i:s') }}
+                        date: {{ step.recordedAt|date }}
                     </li>
                 {% endfor %}
             </ul>
