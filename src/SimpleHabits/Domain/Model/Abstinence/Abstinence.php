@@ -224,7 +224,7 @@ class Abstinence
 
     /**
      * Get all date intervals between start date, violations date, and current date
-     * They will be used to calculate the longest day streak
+     * They will be used to calculate the longest day streak.
      *
      * @return array
      */
@@ -247,9 +247,10 @@ class Abstinence
         $intervalCount = count($periodDates) - 1;
         $intervals = [];
 
-        for ($index = 0; $index < $intervalCount; $index++) {
+        for ($index = 0; $index < $intervalCount; ++$index) {
             $intervals[] = new DayStreak($periodDates[$index], $periodDates[$index + 1]);
         }
+
         return $intervals;
     }
 }
