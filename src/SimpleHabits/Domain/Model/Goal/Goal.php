@@ -278,6 +278,7 @@ class Goal
 
     /**
      * @param DateTimeInterface $date
+     *
      * @return float|int
      */
     public function calculateExpectedValueAt(DateTimeInterface $date)
