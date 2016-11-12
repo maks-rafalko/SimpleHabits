@@ -4,6 +4,7 @@ namespace SimpleHabits\Domain\Model\Goal;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use SimpleHabits\Domain\Model\User\UserId;
+use DateTimeInterface;
 
 class Goal
 {
@@ -273,5 +274,37 @@ class Goal
         }
 
         return $this->goalSteps->last()->getRecordedAt();
+    }
+
+    /**
+     * @param DateTimeInterface $date
+     * @return float|int
+     */
+    public function calculateExpectedValueAt(DateTimeInterface $date)
+    {
+        $interval = $this->startedAt->diff($date);
+
+        $diffInDays = (int) $interval->format('%a');
+
+        $multiplier = $this->initialValue <= $this->targetValue ? 1 : -1;
+        $initialAveragePerDay = $this->calculateInitialAveragePerDay();
+
+        return $this->initialValue + ($initialAveragePerDay * $diffInDays * $multiplier);
+    }
+
+    /**
+     * @return float|int
+     */
+    public function calculateInitialAveragePerDay()
+    {
+        $interval = $this->targetDate->diff($this->startedAt);
+
+        $diffInDays = (int) $interval->format('%a');
+
+        if ($diffInDays === 0) {
+            return 0;
+        }
+
+        return abs($this->targetValue - $this->initialValue) / $diffInDays;
     }
 }

@@ -12,8 +12,10 @@
             <br>
             <b>Target Date:</b> {{ goal.targetDate|date }}<br>
             <b>Target Value:</b> {{ goal.targetValue }}<br>
+            <b>Initial Value:</b> {{ goal.initialValue }}<br>
             <b>Last recorded date:</b> {{ goal.lastRecordedDate|date }}<br>
             <b>Last recorded value:</b> {{ goal.lastRecordedValue }}<br>
+            <b>Initial Average per day:</b> {{ goal.calculateInitialAveragePerDay|round(2) }}<br>
             <b>Average per day:</b> {{ goal.calculateAveragePerDay|round(2) }}<br>
 
             <ul>
@@ -21,7 +23,9 @@
                 {% set goalSteps = goal.getGoalSteps() %}
                 {% for step in goalSteps %}
                     <li>
-                        {% if step.value %}value: {{ step.value }}{% endif %}
+                        {% set expectedValue = goal.calculateExpectedValueAt(step.recordedAt) %}
+                        {% set delta = step.value - expectedValue %}
+                        value: {{ step.value|round(2) }}; <b>expected value: {{ expectedValue|round(2) }} ({{ (delta < 0 ? '-' : '+') ~ delta|round(2) }})</b>
                         date: {{ step.recordedAt|date }}
                     </li>
                 {% endfor %}

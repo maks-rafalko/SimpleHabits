@@ -155,7 +155,7 @@ class Abstinence
             return new DayStreak($this->startedAt, new \DateTimeImmutable());
         }
 
-        $intervals = $this->getAllDateIntervals();
+        $intervals = $this->getAllDateStreaks();
 
         usort(
             $intervals,
@@ -223,12 +223,12 @@ class Abstinence
     }
 
     /**
-     * Get all date intervals between start date, violations date, and current date
+     * Get all date streaks (intervals) between start date, violations date, and current date
      * They will be used to calculate the longest day streak.
      *
      * @return array
      */
-    private function getAllDateIntervals() : array
+    private function getAllDateStreaks() : array
     {
         $periodDates = [$this->startedAt];
 
@@ -244,13 +244,13 @@ class Abstinence
 
         $periodDates[] = new \DateTimeImmutable();
 
-        $intervalCount = count($periodDates) - 1;
-        $intervals = [];
+        $dayStreakCount = count($periodDates) - 1;
+        $dayStreaks = [];
 
-        for ($index = 0; $index < $intervalCount; ++$index) {
-            $intervals[] = new DayStreak($periodDates[$index], $periodDates[$index + 1]);
+        for ($index = 0; $index < $dayStreakCount; ++$index) {
+            $dayStreaks[] = new DayStreak($periodDates[$index], $periodDates[$index + 1]);
         }
 
-        return $intervals;
+        return $dayStreaks;
     }
 }

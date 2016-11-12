@@ -94,6 +94,11 @@ class GoalSpec extends ObjectBehavior
         $this->calculateAveragePerDay()->shouldEqual(2.0);
     }
 
+    public function it_should_have_calculated_initial_average_per_day_value()
+    {
+        $this->calculateAveragePerDay()->shouldEqual(2.0);
+    }
+
     public function it_can_add_goal_step()
     {
         $this->addGoalStepWithValue(90);
@@ -153,5 +158,12 @@ class GoalSpec extends ObjectBehavior
         $recordedDate = new \DateTimeImmutable();
         $this->addGoalStepWithValue(85, $recordedDate);
         $this->getLastRecordedDate()->shouldBeLike($recordedDate);
+    }
+
+    public function it_should_calculate_expected_value_at_date()
+    {
+        $date = new \DateTimeImmutable('+7 days');
+
+        $this->calculateExpectedValueAt($date)->shouldEqual(86);
     }
 }
