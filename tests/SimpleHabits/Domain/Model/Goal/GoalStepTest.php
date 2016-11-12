@@ -2,7 +2,6 @@
 
 namespace SimpleHabits\Domain\Model\Goal;
 
-
 class GoalStepTest extends \PHPUnit_Framework_TestCase
 {
     /**
