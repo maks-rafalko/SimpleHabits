@@ -283,6 +283,10 @@ class Goal
      */
     public function calculateExpectedValueAt(DateTimeInterface $date)
     {
+        \Assert\that($date)
+            ->greaterOrEqualThan($this->startedAt)
+            ->lessOrEqualThan($this->targetDate);
+
         $interval = $this->startedAt->diff($date);
 
         $diffInDays = (int) $interval->format('%a');

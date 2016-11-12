@@ -3,6 +3,7 @@
 namespace spec\SimpleHabits\Domain\Model\Goal;
 
 use Assert\AssertionFailedException;
+use Assert\InvalidArgumentException;
 use PhpSpec\ObjectBehavior;
 use SimpleHabits\Domain\Model\Goal\GoalId;
 use SimpleHabits\Domain\Model\User\UserId;
@@ -165,5 +166,19 @@ class GoalSpec extends ObjectBehavior
         $date = new \DateTimeImmutable('+7 days');
 
         $this->calculateExpectedValueAt($date)->shouldEqual(86);
+    }
+
+    public function it_should_throw_an_exception_when_date_for_expected_calculated_value_is_greater_than_target_date()
+    {
+        $date = new \DateTimeImmutable('+16 days');
+
+        $this->shouldThrow(InvalidArgumentException::class)->during('calculateExpectedValueAt', [$date]);
+    }
+
+    public function it_should_throw_an_exception_when_date_for_expected_calculated_value_is_less_than_start_date()
+    {
+        $date = new \DateTimeImmutable('-1 day');
+
+        $this->shouldThrow(InvalidArgumentException::class)->during('calculateExpectedValueAt', [$date]);
     }
 }
