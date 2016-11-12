@@ -14,7 +14,7 @@
             <b>Target Value:</b> {{ goal.targetValue }}<br>
             <b>Last recorded date:</b> {{ goal.lastRecordedDate|date }}<br>
             <b>Last recorded value:</b> {{ goal.lastRecordedValue }}<br>
-            <b>Average per day:</b> {{ goal.calculateAveragePerDay }}<br>
+            <b>Average per day:</b> {{ goal.calculateAveragePerDay|round(2) }}<br>
 
             <ul>
                 <li>Initially logged: {{ goal.initialValue }}, {{ goal.startedAt|date }}</li>

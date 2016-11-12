@@ -30,11 +30,13 @@ class Violation
      */
     public function __construct(ViolationId $id, $reason = null, $violatedAt = null)
     {
+        $now = new \DateTimeImmutable();
         \Assert\that($reason)->nullOr()->string()->maxLength(self::MAX_REASON_LENGTH);
+        \Assert\that($violatedAt)->nullOr()->lessOrEqualThan($now);
 
         $this->id = $id;
         $this->reason = $reason;
-        $this->violatedAt = $violatedAt ?: new \DateTimeImmutable();
+        $this->violatedAt = $violatedAt ?: $now;
     }
 
     /**

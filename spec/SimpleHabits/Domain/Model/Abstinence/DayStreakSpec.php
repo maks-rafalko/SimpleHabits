@@ -17,6 +17,11 @@ class DayStreakSpec extends ObjectBehavior
         $this->getStartDate()->shouldReturnAnInstanceOf(\DateTimeInterface::class);
     }
 
+    public function it_should_have_a_day_streak_finish_date()
+    {
+        $this->getFinishDate()->shouldReturnAnInstanceOf(\DateTimeInterface::class);
+    }
+
     public function it_should_have_a_count_of_days_in_current_streak()
     {
         $this->getDayStreakCount()->shouldReturn(2);

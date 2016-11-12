@@ -8,6 +8,9 @@
             <div>Name: {{ abstinence.name }}</div>
             <div>started at: {{ abstinence.startedAt|date('Y-m-d H:i:s') }}</div>
             <div>active: {{ abstinence.active ? 'Yes' : 'No' }}</div>
+            {% set longestStreak = abstinence.calculateLongestStreak %}
+            <div>The longest streak day count: {{ longestStreak.dayStreakCount }}</div>
+            <div>The longest streak period: {{ longestStreak.startDate|date ~ '   -   ' ~ longestStreak.finishDate|date }}</div>
 
             <ul>
                 {% set violations = abstinence.getViolations() %}

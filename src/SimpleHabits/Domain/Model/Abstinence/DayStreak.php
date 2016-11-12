@@ -32,6 +32,16 @@ class DayStreak
     }
 
     /**
+     * @return int
+     */
+    public function getDayStreakCount() : int
+    {
+        $interval = $this->finishDate->diff($this->startDate);
+
+        return (int) $interval->format('%a');
+    }
+
+    /**
      * @return \DateTimeInterface
      */
     public function getStartDate() : \DateTimeInterface
@@ -40,12 +50,10 @@ class DayStreak
     }
 
     /**
-     * @return int
+     * @return \DateTimeInterface
      */
-    public function getDayStreakCount() : int
+    public function getFinishDate() : \DateTimeInterface
     {
-        $interval = $this->finishDate->diff($this->startDate);
-
-        return (int) $interval->format('%a');
+        return $this->finishDate;
     }
 }

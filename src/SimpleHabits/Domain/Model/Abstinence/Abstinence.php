@@ -146,6 +146,35 @@ class Abstinence
     }
 
     /**
+     * @return DayStreak
+     */
+    public function calculateLongestStreak() : DayStreak
+    {
+        // TODO read where such functions should be stored. Read about Repository
+        if (count($this->violations) === 0) {
+            return new DayStreak($this->startedAt, new \DateTimeImmutable());
+        }
+
+        $intervals = $this->getAllDateIntervals();
+
+        usort(
+            $intervals,
+            function (DayStreak $dayStreakA, DayStreak $dayStreakB) {
+                $aCount = $dayStreakA->getDayStreakCount();
+                $bCount = $dayStreakB->getDayStreakCount();
+
+                if ($aCount === $bCount) {
+                    return 0;
+                }
+
+                return $aCount > $bCount ? -1 : 1;
+            }
+        );
+
+        return $intervals[0];
+    }
+
+    /**
      * @param string $name
      */
     public function changeName(string $name)
@@ -191,5 +220,36 @@ class Abstinence
     public function getUserId() : UserId
     {
         return $this->userId;
+    }
+
+    /**
+     * Get all date intervals between start date, violations date, and current date
+     * They will be used to calculate the longest day streak
+     *
+     * @return array
+     */
+    private function getAllDateIntervals() : array
+    {
+        $periodDates = [$this->startedAt];
+
+        $periodDates = array_merge(
+            $periodDates,
+            array_map(
+                function (Violation $violation) {
+                    return $violation->getViolationDate();
+                },
+                $this->violations->toArray()
+            )
+        );
+
+        $periodDates[] = new \DateTimeImmutable();
+
+        $intervalCount = count($periodDates) - 1;
+        $intervals = [];
+
+        for ($index = 0; $index < $intervalCount; $index++) {
+            $intervals[] = new DayStreak($periodDates[$index], $periodDates[$index + 1]);
+        }
+        return $intervals;
     }
 }

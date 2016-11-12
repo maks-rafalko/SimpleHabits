@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace spec\SimpleHabits\Domain\Model\Abstinence;
 
 use Assert\AssertionFailedException;
+use Assert\InvalidArgumentException;
 use PhpSpec\ObjectBehavior;
 use SimpleHabits\Domain\Model\Abstinence\AbstinenceId;
 use SimpleHabits\Domain\Model\Abstinence\DayStreak;
@@ -99,6 +100,12 @@ class AbstinenceSpec extends ObjectBehavior
         $this->getViolations()[0]->getViolationDate()->shouldBeLike($violationDate);
     }
 
+    public function it_throws_an_exception_violation_date_is_in_the_future()
+    {
+        $violationDate = new \DateTimeImmutable('+3 days');
+        $this->shouldThrow(InvalidArgumentException::class)->during('violate', ['Reason', $violationDate]);
+    }
+
     public function it_can_return_last_violation()
     {
         $this->violate('Reason', new \DateTimeImmutable('2 days ago'));
@@ -114,5 +121,10 @@ class AbstinenceSpec extends ObjectBehavior
     {
         $this->violate();
         $this->calculateDayStreak()->shouldReturnAnInstanceOf(DayStreak::class);
+    }
+
+    public function it_should_calculate_the_longest_streak()
+    {
+        $this->calculateLongestStreak()->shouldReturnAnInstanceOf(DayStreak::class);
     }
 }
