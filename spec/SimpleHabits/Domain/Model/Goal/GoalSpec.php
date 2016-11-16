@@ -29,6 +29,21 @@ class GoalSpec extends ObjectBehavior
         );
     }
 
+    public function it_can_not_be_constructed_when_target_value_equals_initial_value()
+    {
+        $targetDate = new \DateTimeImmutable('+15 days');
+
+        $this->beConstructedWith(
+            new UserId(),
+            new GoalId(),
+            self::NAME,
+            $targetDate,
+            self::TARGET_VALUE,
+            self::TARGET_VALUE
+        );
+        $this->shouldThrow(AssertionFailedException::class)->duringInstantiation();
+    }
+
     public function it_should_have_an_id()
     {
         $this->getId()->shouldReturnAnInstanceOf(GoalId::class);
@@ -180,5 +195,15 @@ class GoalSpec extends ObjectBehavior
         $date = new \DateTimeImmutable('-1 day');
 
         $this->shouldThrow(InvalidArgumentException::class)->during('calculateExpectedValueAt', [$date]);
+    }
+
+    public function it_should_be_decreasing_sequence()
+    {
+        $this->isIncreasingSequence()->shouldEqual(false);
+    }
+
+    public function it_should_determine_if_delta_is_positive_or_not()
+    {
+        $this->isPositiveDelta(-1)->shouldEqual(true);
     }
 }
