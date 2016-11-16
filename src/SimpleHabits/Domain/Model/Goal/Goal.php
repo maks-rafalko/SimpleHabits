@@ -301,6 +301,7 @@ class Goal
 
     /**
      * @param $delta
+     *
      * @return bool
      */
     public function isPositiveDelta($delta) : bool

@@ -2,7 +2,6 @@
 
 namespace SimpleHabits\Domain\Model\Goal;
 
-
 use SimpleHabits\Domain\Model\User\UserId;
 
 class GoalTest extends \PHPUnit_Framework_TestCase
