@@ -71,6 +71,8 @@ class Goal
      */
     public function __construct(UserId $userId, GoalId $goalId, $name, \DateTimeInterface $targetDate, $targetValue, $initialValue)
     {
+        \Assert\that($initialValue)->notEq($targetValue);
+
         $this->userId = $userId;
         $this->id = $goalId;
         $this->targetValue = $targetValue;
@@ -295,6 +297,27 @@ class Goal
         $initialAveragePerDay = $this->calculateInitialAveragePerDay();
 
         return $this->initialValue + ($initialAveragePerDay * $diffInDays * $multiplier);
+    }
+
+    /**
+     * @param $delta
+     * @return bool
+     */
+    public function isPositiveDelta($delta) : bool
+    {
+        if ($this->isIncreasingSequence()) {
+            return $delta > 0;
+        }
+
+        return $delta < 0;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isIncreasingSequence() : bool
+    {
+        return $this->initialValue < $this->targetValue;
     }
 
     /**

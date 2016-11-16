@@ -25,7 +25,8 @@
                     <li>
                         {% set expectedValue = goal.calculateExpectedValueAt(step.recordedAt) %}
                         {% set delta = step.value - expectedValue %}
-                        value: {{ step.value|round(2) }}; <b>expected value: {{ expectedValue|round(2) }} ({{ (delta < 0 ? '-' : '+') ~ delta|round(2) }})</b>
+                        value: {{ step.value|round(2) }};
+                        <b>expected value: {{ expectedValue|round(2) }} (<span style="color: {{ goal.isPositiveDelta(delta) ? 'green' : 'red' }}">{{ (delta < 0 ? '-' : '+') ~ delta|round(2) }}</span>)</b>
                         date: {{ step.recordedAt|date }}
                     </li>
                 {% endfor %}

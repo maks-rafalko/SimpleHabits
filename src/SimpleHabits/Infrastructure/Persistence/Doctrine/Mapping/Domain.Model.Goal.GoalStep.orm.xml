@@ -8,7 +8,7 @@
 
         <id name="id" column="id" type="goalStepId"/>
 
-        <field name="value" type="decimal" />
+        <field name="value" type="decimal" precision="9" scale="3" />
         <field name="recordedAt" type="datetime" column="recorded_at" />
 
     </entity>
