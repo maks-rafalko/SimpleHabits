@@ -4,3 +4,8 @@ suites:
 
 extensions:
     Memio\SpecGen\MemioSpecGenExtension: ~
+    PhpSpecCodeCoverage\CodeCoverageExtension:
+        format:
+            - clover
+        output:
+            clover: coverage_phpspec.xml
