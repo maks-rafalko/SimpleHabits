@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8d0c21d44010e30cf6c110863fe7c940",
-    "content-hash": "5df4a4353d5e3eb48e52296d01307d96",
+    "hash": "611e8669447c1db05f5dcb824177db95",
+    "content-hash": "d700c94168b8b13ec7e094ae5e323f07",
     "packages": [
         {
             "name": "beberlei/assert",
@@ -2679,6 +2679,49 @@
                 "replace"
             ],
             "time": "2015-12-01 17:44:21"
+        },
+        {
+            "name": "henrikbjorn/phpspec-code-coverage",
+            "version": "3.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/henrikbjorn/PhpSpecCodeCoverageExtension.git",
+                "reference": "4e878b81c0d28494882ecb7e9403ac5cbaa6cc1b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/henrikbjorn/PhpSpecCodeCoverageExtension/zipball/4e878b81c0d28494882ecb7e9403ac5cbaa6cc1b",
+                "reference": "4e878b81c0d28494882ecb7e9403ac5cbaa6cc1b",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.5|^5.6|^7.0",
+                "phpspec/phpspec": "^3.0",
+                "phpunit/php-code-coverage": "^4.0"
+            },
+            "require-dev": {
+                "bossa/phpspec2-expect": "dev-master"
+            },
+            "suggest": {
+                "ext-xdebug": "To allow coverage generation when not using a recent version of phpdbg"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PhpSpecCodeCoverage\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Integrates CodeCoverage with PhpSpec",
+            "time": "2016-08-02 06:07:43"
         },
         {
             "name": "memio/linter",
