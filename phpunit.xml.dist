@@ -30,6 +30,6 @@
     </filter>
 
     <logging>
-        <log type="coverage-clover" target="clover.xml"/>
+        <log type="coverage-php" target="/tmp/coverage_phpunit.cov"/>
     </logging>
 </phpunit>
