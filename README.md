@@ -2,3 +2,10 @@
 [![codecov](https://codecov.io/gh/borNfreee/SimpleHabits/branch/master/graph/badge.svg)](https://codecov.io/gh/borNfreee/SimpleHabits)
 
 Habits and Goals tracker
+
+Code Coverage
+================
+
+* `bin/phpunit`
+* `bin/phpspec run`
+* `phpcov merge /tmp --clover coverage.xml`

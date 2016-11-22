@@ -4,3 +4,8 @@ suites:
 
 extensions:
     Memio\SpecGen\MemioSpecGenExtension: ~
+    PhpSpecCodeCoverage\CodeCoverageExtension:
+        format:
+            - php
+        output:
+            php: /tmp/coverage_phpspec.cov
