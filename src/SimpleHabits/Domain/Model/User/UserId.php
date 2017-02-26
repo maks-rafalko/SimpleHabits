@@ -22,7 +22,7 @@ class UserId
     /**
      * @return string
      */
-    public function id() : string
+    public function id(): string
     {
         return $this->id;
     }
@@ -32,7 +32,7 @@ class UserId
      *
      * @return bool
      */
-    public function equals(UserId $userId) : bool
+    public function equals(UserId $userId): bool
     {
         return $this->id() === $userId->id();
     }
@@ -40,7 +40,7 @@ class UserId
     /**
      * @return string
      */
-    public function __toString() : string
+    public function __toString(): string
     {
         return $this->id();
     }

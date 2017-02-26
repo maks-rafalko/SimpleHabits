@@ -52,7 +52,7 @@ class DoctrineGoalRepository implements GoalRepository
     /**
      * {@inheritdoc}
      */
-    public function findById(GoalId $id) : Goal
+    public function findById(GoalId $id): Goal
     {
         return $this->repository->find($id);
     }

@@ -22,7 +22,7 @@ class GoalStepId
     /**
      * @return string
      */
-    public function id() : string
+    public function id(): string
     {
         return $this->id;
     }
@@ -32,7 +32,7 @@ class GoalStepId
      *
      * @return bool
      */
-    public function equals(GoalStepId $goalStepId) : bool
+    public function equals(GoalStepId $goalStepId): bool
     {
         return $this->id() === $goalStepId->id();
     }
@@ -40,7 +40,7 @@ class GoalStepId
     /**
      * @return string
      */
-    public function __toString() : string
+    public function __toString(): string
     {
         return $this->id();
     }
