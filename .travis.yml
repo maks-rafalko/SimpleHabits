@@ -15,6 +15,7 @@ before_script:
   - travis_retry composer install --prefer-source --no-interaction --dev
 
 script:
+  - bin/phpstan analyse src --level=1
   - bin/phpspec run --format=pretty
   - bin/phpunit --coverage-clover=coverage.xml
   - wget https://phar.phpunit.de/phpcov.phar && php phpcov.phar merge /tmp --clover coverage.xml

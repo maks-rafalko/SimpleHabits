@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleHabits\Domain\Model\Abstinence\Exception;
+namespace SimpleHabits\Domain\Model\Goal\Exception;
 
 use SimpleHabits\Domain\Model\Goal\GoalId;
 

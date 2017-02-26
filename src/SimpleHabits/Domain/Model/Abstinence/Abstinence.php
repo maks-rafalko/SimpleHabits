@@ -38,7 +38,7 @@ class Abstinence
     private $status;
 
     /**
-     * @var \DateTimeImmutable
+     * @var \DateTimeInterface
      */
     private $startedAt;
 

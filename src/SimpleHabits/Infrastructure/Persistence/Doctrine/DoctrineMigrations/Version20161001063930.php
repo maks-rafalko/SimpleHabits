@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleHabits\Infrastructure\Persistence\Doctrine;
+namespace SimpleHabits\Infrastructure\Persistence\Doctrine\DoctrineMigrations;
 
 use Doctrine\DBAL\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
