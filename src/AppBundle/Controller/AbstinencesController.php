@@ -124,7 +124,7 @@ class AbstinencesController extends Controller
      *
      * @return array
      */
-    private function buildDeleteForms(array $abstinences) : array
+    private function buildDeleteForms(array $abstinences): array
     {
         $deleteForms = [];
         foreach ($abstinences as $abstinence) {

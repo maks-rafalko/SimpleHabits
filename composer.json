@@ -40,7 +40,8 @@
         "phpspec/phpspec": "^3.0",
         "memio/spec-gen": "^0.6",
         "phpunit/phpunit": "5.5.*",
-        "henrikbjorn/phpspec-code-coverage": "^3.0"
+        "henrikbjorn/phpspec-code-coverage": "^3.0",
+        "phpstan/phpstan": "^0.6.4"
     },
     "config": {
         "bin-dir": "bin"

@@ -38,7 +38,7 @@ class Abstinence
     private $status;
 
     /**
-     * @var \DateTimeImmutable
+     * @var \DateTimeInterface
      */
     private $startedAt;
 
@@ -68,7 +68,7 @@ class Abstinence
     /**
      * @return AbstinenceId
      */
-    public function getId() : AbstinenceId
+    public function getId(): AbstinenceId
     {
         return $this->id;
     }
@@ -76,7 +76,7 @@ class Abstinence
     /**
      * @return string
      */
-    public function getName() : string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -84,7 +84,7 @@ class Abstinence
     /**
      * @return bool
      */
-    public function isActive() : bool
+    public function isActive(): bool
     {
         return $this->status === self::STATUS_ACTIVE;
     }
@@ -92,7 +92,7 @@ class Abstinence
     /**
      * @return bool
      */
-    public function isDeleted() : bool
+    public function isDeleted(): bool
     {
         return $this->status === self::STATUS_DELETED;
     }
@@ -117,7 +117,7 @@ class Abstinence
     /**
      * @return bool
      */
-    public function isViolated() : bool
+    public function isViolated(): bool
     {
         return count($this->violations) > 0;
     }
@@ -125,7 +125,7 @@ class Abstinence
     /**
      * @return array
      */
-    public function getViolations() : array
+    public function getViolations(): array
     {
         return $this->violations->toArray();
     }
@@ -133,7 +133,7 @@ class Abstinence
     /**
      * @return DayStreak
      */
-    public function calculateDayStreak() : DayStreak
+    public function calculateDayStreak(): DayStreak
     {
         if (count($this->violations) === 0) {
             return new DayStreak($this->startedAt, new \DateTimeImmutable());
@@ -148,7 +148,7 @@ class Abstinence
     /**
      * @return DayStreak
      */
-    public function calculateLongestStreak() : DayStreak
+    public function calculateLongestStreak(): DayStreak
     {
         // TODO read where such functions should be stored. Read about Repository
         if (count($this->violations) === 0) {
@@ -201,7 +201,7 @@ class Abstinence
     /**
      * @return \DateTimeInterface
      */
-    public function getStartedAt() : \DateTimeInterface
+    public function getStartedAt(): \DateTimeInterface
     {
         return $this->startedAt;
     }
@@ -209,7 +209,7 @@ class Abstinence
     /**
      * @return mixed
      */
-    public function getLastViolation() : Violation
+    public function getLastViolation(): Violation
     {
         return $this->violations->last();
     }
@@ -217,7 +217,7 @@ class Abstinence
     /**
      * @return UserId
      */
-    public function getUserId() : UserId
+    public function getUserId(): UserId
     {
         return $this->userId;
     }
@@ -228,7 +228,7 @@ class Abstinence
      *
      * @return array
      */
-    private function getAllDateStreaks() : array
+    private function getAllDateStreaks(): array
     {
         $periodDates = [$this->startedAt];
 

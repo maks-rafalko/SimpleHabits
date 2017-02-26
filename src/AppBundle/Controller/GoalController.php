@@ -125,7 +125,7 @@ class GoalController extends Controller
      *
      * @return array
      */
-    private function buildDeleteForms(array $goals) : array
+    private function buildDeleteForms(array $goals): array
     {
         $deleteForms = [];
         foreach ($goals as $goal) {

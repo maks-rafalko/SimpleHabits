@@ -3,7 +3,7 @@
 namespace SimpleHabits\Application\Handler\Goal;
 
 use SimpleHabits\Application\Command\Goal\AddGoalStepCommand;
-use SimpleHabits\Domain\Model\Abstinence\Exception\GoalDoesNotExistException;
+use SimpleHabits\Domain\Model\Goal\Exception\GoalDoesNotExistException;
 use SimpleHabits\Domain\Model\Goal\GoalRepository;
 
 class AddGoalStepHandler

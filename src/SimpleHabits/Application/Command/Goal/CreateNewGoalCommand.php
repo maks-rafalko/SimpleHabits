@@ -52,7 +52,7 @@ class CreateNewGoalCommand
     /**
      * @return UserId
      */
-    public function getUserId() : UserId
+    public function getUserId(): UserId
     {
         return $this->userId;
     }
@@ -60,7 +60,7 @@ class CreateNewGoalCommand
     /**
      * @return string
      */
-    public function getName() : string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -68,7 +68,7 @@ class CreateNewGoalCommand
     /**
      * @return \DateTimeInterface
      */
-    public function getTargetDate() : \DateTimeInterface
+    public function getTargetDate(): \DateTimeInterface
     {
         return $this->targetDate;
     }
