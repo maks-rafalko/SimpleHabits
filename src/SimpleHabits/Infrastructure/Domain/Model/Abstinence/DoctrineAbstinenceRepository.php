@@ -52,7 +52,7 @@ class DoctrineAbstinenceRepository implements AbstinenceRepository
     /**
      * {@inheritdoc}
      */
-    public function findById(AbstinenceId $id) : Abstinence
+    public function findById(AbstinenceId $id): Abstinence
     {
         return $this->repository->find($id);
     }

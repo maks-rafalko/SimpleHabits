@@ -89,7 +89,7 @@ class Goal
     /**
      * @return GoalId
      */
-    public function getId() : GoalId
+    public function getId(): GoalId
     {
         return $this->id;
     }
@@ -105,7 +105,7 @@ class Goal
     /**
      * @return string
      */
-    public function getName() : string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -131,7 +131,7 @@ class Goal
     /**
      * @return array
      */
-    public function getGoalSteps() : array
+    public function getGoalSteps(): array
     {
         return $this->goalSteps->toArray();
     }
@@ -139,7 +139,7 @@ class Goal
     /**
      * @return \DateTimeInterface
      */
-    public function getTargetDate() : \DateTimeInterface
+    public function getTargetDate(): \DateTimeInterface
     {
         return $this->targetDate;
     }
@@ -208,7 +208,7 @@ class Goal
     /**
      * @return bool
      */
-    public function isDeleted() : bool
+    public function isDeleted(): bool
     {
         return $this->status === self::STATUS_DELETED;
     }
@@ -216,7 +216,7 @@ class Goal
     /**
      * @return bool
      */
-    public function isActive() : bool
+    public function isActive(): bool
     {
         return $this->status === self::STATUS_ACTIVE;
     }
@@ -224,7 +224,7 @@ class Goal
     /**
      * @return \DateTimeInterface
      */
-    public function getStartedAt() : \DateTimeInterface
+    public function getStartedAt(): \DateTimeInterface
     {
         return $this->startedAt;
     }
@@ -232,7 +232,7 @@ class Goal
     /**
      * @return float
      */
-    public function calculateAveragePerDay() : float
+    public function calculateAveragePerDay(): float
     {
         $interval = $this->targetDate->diff(new \DateTimeImmutable());
 
@@ -269,7 +269,7 @@ class Goal
     /**
      * @return \DateTimeInterface
      */
-    public function getLastRecordedDate() : \DateTimeInterface
+    public function getLastRecordedDate(): \DateTimeInterface
     {
         if ($this->goalSteps->count() === 0) {
             return $this->startedAt;
@@ -304,7 +304,7 @@ class Goal
      *
      * @return bool
      */
-    public function isPositiveDelta($delta) : bool
+    public function isPositiveDelta($delta): bool
     {
         if ($this->isIncreasingSequence()) {
             return $delta > 0;
@@ -316,7 +316,7 @@ class Goal
     /**
      * @return bool
      */
-    public function isIncreasingSequence() : bool
+    public function isIncreasingSequence(): bool
     {
         return $this->initialValue < $this->targetValue;
     }

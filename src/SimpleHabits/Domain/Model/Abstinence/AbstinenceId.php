@@ -24,7 +24,7 @@ class AbstinenceId
     /**
      * @return string
      */
-    public function id() : string
+    public function id(): string
     {
         return $this->id;
     }
@@ -34,7 +34,7 @@ class AbstinenceId
      *
      * @return bool
      */
-    public function equals(AbstinenceId $abstinenceId) : bool
+    public function equals(AbstinenceId $abstinenceId): bool
     {
         return $this->id() === $abstinenceId->id();
     }
@@ -42,7 +42,7 @@ class AbstinenceId
     /**
      * @return string
      */
-    public function __toString() : string
+    public function __toString(): string
     {
         return $this->id();
     }

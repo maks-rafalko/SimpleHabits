@@ -40,7 +40,7 @@ class AddViolationCommand
     /**
      * @return AbstinenceId
      */
-    public function getAbstinenceId() : AbstinenceId
+    public function getAbstinenceId(): AbstinenceId
     {
         return $this->abstinenceId;
     }
