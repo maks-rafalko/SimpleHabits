@@ -19,6 +19,7 @@
                         <th>Average per day</th>
                         <th>Expected Value</th>
                         <th>Last Recorded Value</th>
+                        <th>Target Value</th>
                         <th>Delta</th>
                         <th>Actions</th>
                     </tr>
@@ -34,6 +35,7 @@
                             <td>{{ goal.calculateAveragePerDay()|round(2) }}</td>
                             <td>{{ expectedValue|round(2) }}</td>
                             <td>{{ lastRecordedValue|round(2) }}</td>
+                            <td>{{ goal.targetValue|round(2) }}</td>
                             <td class="{{ goal.isPositiveDelta(delta) ? 'success' : 'danger' }}">
                                 {% if delta == 0 %}
                                     -
