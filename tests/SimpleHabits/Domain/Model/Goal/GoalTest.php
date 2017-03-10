@@ -40,10 +40,10 @@ class GoalTest extends \PHPUnit_Framework_TestCase
     {
         return [
             [0, 500, 5, true],
-            [0, 500, 0, false],
+            [0, 500, 0, true],
             [0, 500, -1, false],
             [500, 0, -1, true],
-            [500, 0, 0, false],
+            [500, 0, 0, true],
             [500, 0, 1, false],
         ];
     }
