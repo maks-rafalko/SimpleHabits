@@ -307,7 +307,7 @@ class Goal
     public function isPositiveDelta($delta): bool
     {
         if ($this->isIncreasingSequence()) {
-            return $delta > 0;
+            return $delta >= 0;
         }
 
         return $delta < 0;

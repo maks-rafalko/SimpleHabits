@@ -9,20 +9,52 @@
                 </div>
             {% endfor %}
 
-            <a href="{{ url('goals_create') }}">Create Goal</a>
-            <ul>
-                {% for goal in goals %}
-                    <li>
-                        {{ goal.name }};
-                        <b>Average per day:</b> {{ goal.calculateAveragePerDay|round(2) }} <br>
-                        {% if goal.isActive %}
-                            <a href="{{ url('goals_steps_new', {id: goal.id}) }}">Add Goal Step</a>
-                            {{ form(deleteForms[goal.id.id]) }}
-                        {% endif %}
-                        <a href="{{ url('goal', {id: goal.id}) }}">View</a>
-                    </li>
-                {% endfor %}
-            </ul>
+            <a href="{{ url('goals_create') }}" class="btn btn-success">Create Goal</a>
+
+            {% if goals %}
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Average per day</th>
+                        <th>Expected Value</th>
+                        <th>Last Recorded Value</th>
+                        <th>Delta</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for goal in goals %}
+                        {% set expectedValue = goal.calculateExpectedValueAt(date()) %}
+                        {% set lastRecordedValue = goal.lastRecordedValue %}
+                        {% set delta = goal.lastRecordedValue - expectedValue %}
+
+                        <tr class="{% if goal.isActive %}active {% endif %}">
+                            <td>{{ goal.name }}</td>
+                            <td>{{ goal.calculateAveragePerDay()|round(2) }}</td>
+                            <td>{{ expectedValue|round(2) }}</td>
+                            <td>{{ lastRecordedValue|round(2) }}</td>
+                            <td class="{{ goal.isPositiveDelta(delta) ? 'success' : 'danger' }}">
+                                {% if delta == 0 %}
+                                    -
+                                {% else %}
+                                    {{ (delta > 0 ? '+' : '') ~ delta|round(2) }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if goal.isActive %}
+                                    <a href="{{ url('goals_steps_new', {id: goal.id}) }}">Add Goal Step</a>
+                                    {{ form(deleteForms[goal.id.id]) }}
+                                {% endif %}
+                                <a href="{{ url('goal', {id: goal.id}) }}">View</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <div>No records found</div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

@@ -28,3 +28,4 @@ security:
     access_control:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/abstinences, roles: ROLE_USER }
+        - { path: ^/goals, roles: ROLE_USER }

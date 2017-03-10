@@ -5,13 +5,22 @@
         <div id="container">
             <a href="{{ url('goals') }}">Goals</a>
 
-            <br><br>
-            Add Goal Step for "{{ goal.name }}"<br>
+            <h2>Add Goal Step for "{{ goal.name }}"</h2>
 
-            <br>
-            <b>Target Value:</b> {{ goal.targetValue }}<br>
-            <b>Last recorded date:</b> {{ goal.lastRecordedDate|date }}<br>
-            <b>Last recorded value:</b> {{ goal.lastRecordedValue }}<br>
+            <table class="table table-striped">
+                <tr>
+                    <td>Target Value:</td>
+                    <td>{{ goal.targetValue }}</td>
+                </tr>
+                <tr>
+                    <td>Last recorded date:</td>
+                    <td>{{ goal.lastRecordedDate|date }}</td>
+                </tr>
+                <tr>
+                    <td>Last recorded value:</td>
+                    <td>{{ goal.lastRecordedValue|round(2) }}</td>
+                </tr>
+            </table>
 
             {{ form(form) }}
         </div>

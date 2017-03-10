@@ -5,18 +5,48 @@
         <div id="container">
             <a href="{{ url('goals') }}">Goals</a>
 
-            <div>Name: {{ goal.name }}</div>
-            <div>started at: {{ goal.startedAt|date('Y-m-d H:i:s') }}</div>
-            <div>active: {{ goal.active ? 'Yes' : 'No' }}</div>
-
-            <br>
-            <b>Target Date:</b> {{ goal.targetDate|date }}<br>
-            <b>Target Value:</b> {{ goal.targetValue }}<br>
-            <b>Initial Value:</b> {{ goal.initialValue }}<br>
-            <b>Last recorded date:</b> {{ goal.lastRecordedDate|date }}<br>
-            <b>Last recorded value:</b> {{ goal.lastRecordedValue }}<br>
-            <b>Initial Average per day:</b> {{ goal.calculateInitialAveragePerDay|round(2) }}<br>
-            <b>Average per day:</b> {{ goal.calculateAveragePerDay|round(2) }}<br>
+            <table class="table table-striped">
+                <tr>
+                    <td>Name:</td>
+                    <td>{{ goal.name }}</td>
+                </tr>
+                <tr>
+                    <td>Started At:</td>
+                    <td>{{ goal.startedAt|date('Y-m-d H:i:s') }}</td>
+                </tr>
+                <tr>
+                    <td>Active:</td>
+                    <td>{{ goal.active ? 'Yes' : 'No' }}</td>
+                </tr>
+                <tr>
+                    <td>Target Date:</td>
+                    <td>{{ goal.targetDate|date }}</td>
+                </tr>
+                <tr>
+                    <td>Target Value:</td>
+                    <td>{{ goal.targetValue }}</td>
+                </tr>
+                <tr>
+                    <td>Initial Value:</td>
+                    <td>{{ goal.initialValue }}</td>
+                </tr>
+                <tr>
+                    <td>Last recorded date:</td>
+                    <td>{{ goal.lastRecordedDate|date }}</td>
+                </tr>
+                <tr>
+                    <td>Last recorded value:</td>
+                    <td>{{ goal.lastRecordedValue|round(2) }}</td>
+                </tr>
+                <tr>
+                    <td>Initial Average per day:</td>
+                    <td>{{ goal.calculateInitialAveragePerDay|round(2) }}</td>
+                </tr>
+                <tr>
+                    <td>Average per day:</td>
+                    <td>{{ goal.calculateAveragePerDay|round(2) }}</td>
+                </tr>
+            </table>
 
             <ul>
                 <li>Initially logged: {{ goal.initialValue }}, {{ goal.startedAt|date }}</li>
