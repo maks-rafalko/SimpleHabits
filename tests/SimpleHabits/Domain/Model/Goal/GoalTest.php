@@ -28,6 +28,19 @@ class GoalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($isPositive, $goal->isPositiveDelta($delta));
     }
 
+    /**
+     * @test
+     * @dataProvider percentageProvider
+     */
+    public function it_calculates_percentage($targetValue, $initialValue, $stepValue, $expectedPercentage)
+    {
+        $goal = $this->createGoal($targetValue, $initialValue, [['value' => $stepValue]]);
+
+        $percentage = $goal->calculateCurrentPercentage();
+
+        $this->assertEquals($expectedPercentage, $percentage);
+    }
+
     public function increasingFlagDataProvider()
     {
         return [
@@ -48,10 +61,28 @@ class GoalTest extends \PHPUnit_Framework_TestCase
         ];
     }
 
-    private function createGoal($initialValue, $targetValue)
+    public function percentageProvider()
+    {
+        return [
+            [6, 2, 3, 75],
+            [2, 6, 3, 25],
+            [2, 6, 6, 100],
+            [2, 6, 2, 0],
+            [-6, -2, -3, 75],
+            [-2, -6, -3, 25],
+        ];
+    }
+
+    private function createGoal($initialValue, $targetValue, array $steps = [])
     {
         $targetDate = new \DateTimeImmutable('+1 month');
 
-        return new Goal(new UserId(), new GoalId(), 'Read the book', $targetDate, $targetValue, $initialValue);
+        $goal = new Goal(new UserId(), new GoalId(), 'Read the book', $targetDate, $targetValue, $initialValue);
+
+        foreach ($steps as $stepData) {
+            $goal->addGoalStepWithValue($stepData['value'], $stepData['date'] ?? null);
+        }
+
+        return $goal;
     }
 }

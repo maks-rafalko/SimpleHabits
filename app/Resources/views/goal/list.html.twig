@@ -21,6 +21,7 @@
                         <th>Last Recorded Value</th>
                         <th>Target Value</th>
                         <th>Delta</th>
+                        <th>Progress</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
@@ -43,6 +44,7 @@
                                     {{ (delta > 0 ? '+' : '') ~ delta|round(2) }}
                                 {% endif %}
                             </td>
+                            <td>{{ goal.calculateCurrentPercentage()|round(2) }}%</td>
                             <td>
                                 {% if goal.isActive %}
                                     <a href="{{ url('goals_steps_new', {id: goal.id}) }}">Add Goal Step</a>

@@ -46,6 +46,10 @@
                     <td>Average per day:</td>
                     <td>{{ goal.calculateAveragePerDay|round(2) }}</td>
                 </tr>
+                <tr>
+                    <td>Progress:</td>
+                    <td>{{ goal.calculateCurrentPercentage()|round(2) }}%</td>
+                </tr>
             </table>
 
             <ul>

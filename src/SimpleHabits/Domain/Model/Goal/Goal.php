@@ -340,4 +340,22 @@ class Goal
 
         return abs($this->targetValue - $this->initialValue) / $diffInDays;
     }
+
+    /**
+     * Calculate the current percentage (progress)
+     *
+     * @return float
+     */
+    public function calculateCurrentPercentage(): float
+    {
+        $currentValue = $this->getLastRecordedValue();
+        $totalValue = abs($this->targetValue - $this->initialValue);
+        $progressValue = abs($currentValue - $this->initialValue);
+
+        if ($totalValue === 0) {
+            return 100;
+        }
+
+        return $progressValue / $totalValue * 100;
+    }
 }
