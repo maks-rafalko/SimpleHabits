@@ -342,7 +342,7 @@ class Goal
     }
 
     /**
-     * Calculate the current percentage (progress)
+     * Calculate the current percentage (progress).
      *
      * @return float
      */
