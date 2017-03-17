@@ -10,18 +10,31 @@
             {% endfor %}
 
             <a href="{{ url('abstinences_create') }}">Create Abstinence</a>
-            <ul>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Day Streak</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
                 {% for abstinence in abstinences %}
-                    <li>
-                        {{ abstinence.name }} ({{ abstinence.calculateDayStreak.getDayStreakCount() }} days streak)
-                        {% if abstinence.isActive %}
-                            <a href="{{ url('abstinences_violates_new', {id: abstinence.id}) }}">Violate</a>
-                            {{ form(deleteForms[abstinence.id.id]) }}
-                        {% endif %}
-                        <a href="{{ url('abstinence', {id: abstinence.id}) }}">View</a>
-                    </li>
+                    <tr class="{% if abstinence.isActive %}active {% endif %}">
+                        <td>{{ abstinence.name }}</td>
+                        <td>{{ abstinence.calculateDayStreak.getDayStreakCount() }} days streak</td>
+                        <td>
+                            {% if abstinence.isActive %}
+                                <a href="{{ url('abstinences_violates_new', {id: abstinence.id}) }}">Violate</a>
+                                {{ form(deleteForms[abstinence.id.id]) }}
+                            {% endif %}
+                            <a href="{{ url('abstinence', {id: abstinence.id}) }}">View</a>
+                        </td>
+                    </tr>
                 {% endfor %}
-            </ul>
+                </tbody>
+            </table>
         </div>
     </div>
 {% endblock %}
