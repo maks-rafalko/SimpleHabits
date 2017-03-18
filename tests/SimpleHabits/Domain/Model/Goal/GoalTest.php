@@ -46,18 +46,19 @@ class GoalTest extends \PHPUnit_Framework_TestCase
         return [
             [0, 500, true],
             [500, 0, false],
+            [0, 0, false],
         ];
     }
 
     public function deltaDataProvider()
     {
         return [
-            [0, 500, 5, true],
+            [0, 1, 0.5, true],
             [0, 500, 0, true],
             [0, 500, -1, false],
             [500, 0, -1, true],
             [500, 0, 0, true],
-            [500, 0, 1, false],
+            [500, 0, 0.5, false],
         ];
     }
 
@@ -67,6 +68,7 @@ class GoalTest extends \PHPUnit_Framework_TestCase
             [6, 2, 3, 75],
             [2, 6, 3, 25],
             [2, 6, 6, 100],
+            [2, 2, 6, 100],
             [2, 6, 2, 0],
             [-6, -2, -3, 75],
             [-2, -6, -3, 25],

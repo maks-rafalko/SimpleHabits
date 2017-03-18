@@ -9,3 +9,11 @@ Code Coverage
 * `bin/phpunit`
 * `bin/phpspec run`
 * `phpcov merge /tmp --clover coverage.xml`
+
+Xdebug
+================
+
+`phpenmod xdebug` / `phpdismod xdebug`
+   * creates symlink: `/etc/php/7.1/cli/conf.d/20-xdebug.ini`
+    
+`service php7.1-fpm restart`

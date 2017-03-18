@@ -71,13 +71,10 @@ class Goal
      */
     public function __construct(UserId $userId, GoalId $goalId, $name, \DateTimeInterface $targetDate, $targetValue, $initialValue)
     {
-        \Assert\that($initialValue)->notEq($targetValue);
-
         $this->userId = $userId;
         $this->id = $goalId;
         $this->targetValue = $targetValue;
         $this->initialValue = $initialValue;
-        // TODO investigate is it ok to have only ID in a nested (not root) entity en the aggregate
         $this->goalSteps = new ArrayCollection();
         $this->status = self::STATUS_ACTIVE;
         $this->startedAt = new \DateTimeImmutable();
