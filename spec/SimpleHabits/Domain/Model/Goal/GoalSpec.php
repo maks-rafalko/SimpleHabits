@@ -29,21 +29,6 @@ class GoalSpec extends ObjectBehavior
         );
     }
 
-    public function it_can_not_be_constructed_when_target_value_equals_initial_value()
-    {
-        $targetDate = new \DateTimeImmutable('+15 days');
-
-        $this->beConstructedWith(
-            new UserId(),
-            new GoalId(),
-            self::NAME,
-            $targetDate,
-            self::TARGET_VALUE,
-            self::TARGET_VALUE
-        );
-        $this->shouldThrow(AssertionFailedException::class)->duringInstantiation();
-    }
-
     public function it_should_have_an_id()
     {
         $this->getId()->shouldReturnAnInstanceOf(GoalId::class);
